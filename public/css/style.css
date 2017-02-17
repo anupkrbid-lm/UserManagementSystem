@@ -7,7 +7,7 @@ html {
 }
 
 body {
-  background: #c1bdba;
+  /*background: #c1bdba;*/
   font-family: 'Titillium Web', sans-serif;
 }
 
@@ -26,6 +26,7 @@ a:hover {
   padding: 40px;
   max-width: 600px;
   margin: 40px auto;
+  margin-top: 125px;
   border-radius: 4px;
   box-shadow: 0 4px 10px 4px rgba(19, 35, 47, 0.3);
 }
