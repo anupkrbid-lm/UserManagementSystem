@@ -8,8 +8,14 @@ class StartsController extends Controller
 {
     //
 
-    public function website()
+    public function testWebsite()
 	{
 		return view('index');
 	}
+
+	public function website()
+	{
+		return view('homepage');
+	}
+
 }

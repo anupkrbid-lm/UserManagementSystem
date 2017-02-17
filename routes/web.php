@@ -19,3 +19,11 @@ Route::get('/', function () {
 
 
 Route::get('/', 'StartsController@website');
+
+Route::get('/test', function () {
+    return view('index');
+});
+
+Route::get('/getstarted', function () {
+    return view('GetStartedPage');
+});
