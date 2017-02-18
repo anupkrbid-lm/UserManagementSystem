@@ -31,18 +31,20 @@
                             </div>
                         </div>
 
-<!-- Radio Buton Not Working
+
 
 						<div class="field-wrap">
-                            <label>
+                            <label class="radio_label">
                                 Sex<span class="req">*</span>
                             </label>
-                            <input type="radio" name="gender" value="male" checked> Male
-                            <input type="radio" name="gender" value="female"> Female
-  							<input type="radio" name="gender" value="other"> Other
+                            
+                        	<input type="radio" name="gender" value="male" required><span>Male</span>
+                            
+                            <input type="radio" name="gender" value="female" required> <span>Female</span>
+  							<input type="radio" name="gender" value="other" required> <span>Other</span>
 
                         </div>
- -->
+
                         <div class="field-wrap">
                             <label>
                                 Email Address<span class="req">*</span>
@@ -57,16 +59,22 @@
                             <input type="password" required autocomplete="off"/>
                         </div>
                        
-<!-- Checkbox not working
-
-                        <div class="field-wrap">
+                       <div class="field-wrap">
                             <label>
-                                I Agree to all the Terms and Condtions<span class="req">*</span>
+                                Confirm Password<span class="req">*</span>
                             </label>
-                        	<input type="checkbox" name="agree" value="agree">
-                        </div> 
+                            <input type="password" required autocomplete="off"/>
+                        </div>
 
--->
+
+						<div class="field-wrap">
+							<input type="checkbox" name="agree" value="agree" required><span class="req">*</span>
+                            <label class="checkbox_label">
+                                I Agree to all the Terms and Condtions
+                            </label>
+                        </div>
+
+
 
                         <button type="submit" class="button button-block"/>Get Started</button>
                     
