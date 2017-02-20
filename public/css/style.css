@@ -8,7 +8,7 @@ html {
 
 body {
   /*background: #c1bdba;*/
-  font-family: 'Titillium Web', sans-serif;
+  font-family: 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
 a {
@@ -128,14 +128,28 @@ input[type="radio"]{
   height: auto;
   width: auto;
   display: inline-block;
+  width: 15px; height: 15px;
+  font-size: 22px;
+  margin: 0 20px 0 20px;
 }
 
 label.radio_label{
   position: relative;
     left: 0;
     transform: none;
-    margin-right: 10px;
+    margin-right: 15px;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 22px;
 }
+
+<!-- File Uploader
+input[type="file"]{
+  height: auto;
+  width: auto;
+  display: inline-block;
+
+}
+-->
 
 input[type="checkbox"]{
   height: auto;
@@ -164,6 +178,7 @@ textarea {
 .field-wrap {
   position: relative;
   margin-bottom: 40px;
+  font-size: 20px;
 }
 
 .top-row:after {
@@ -171,11 +186,13 @@ textarea {
   display: table;
   clear: both;
 }
+
 .top-row > div {
   float: left;
   width: 48%;
   margin-right: 4%;
 }
+
 .top-row > div:last-child {
   margin: 0;
 }
