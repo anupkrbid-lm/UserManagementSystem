@@ -18,12 +18,22 @@ Route::get('/', function () {
 */
 
 
-Route::get('/', 'StartsController@website');
+Route::get('/','StartsController@website')->name('home');
+Route::get('/getstarted','AuthsController@index');
 
-Route::get('/test', function () {
-    return view('index');
-});
+Route::post('/register', [
+	'uses' => 'AuthsController@register',
+	'as' => 'app.register'
+]);
 
-Route::get('/getstarted', function () {
-    return view('GetStartedPage');
-});
+Route::post('/login', [
+	'uses' => 'AuthsController@login',
+	'as' => 'app.login'
+]);
+
+
+// Route::get('/test', function () {
+//     return view('index');
+// });
+
+

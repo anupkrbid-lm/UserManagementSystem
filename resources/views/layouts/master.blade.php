@@ -17,6 +17,7 @@
     <!-- Theme CSS -->
     <link href="css/freelancer.min.css" rel="stylesheet">
 
+
     <!-- Custom Fonts -->
     <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
@@ -26,6 +27,8 @@
     <link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,300,600' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
     <link rel="stylesheet" href="css/style.css">   
+    <!-- Sweet Alert 2-->
+    <link href="https://cdn.jsdelivr.net/sweetalert2/6.4.2/sweetalert2.min.css" rel="stylesheet">
 
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -132,8 +135,21 @@
 
     <script src="js/index.js"></script>
 
- 
+    <!-- Sweet Alert 2 -->
+    <script src='https://cdn.jsdelivr.net/sweetalert2/6.4.2/sweetalert2.min.js'></script>
+  <!--  <script src='sweetalert2/sweetalert2.min.js'></script>   -->
 
+    <script>
+        @if(session()->has('error'))
+        swal('', "{{ session()->get('error') }}", 'error');
+        @endif
+    </script>
+
+    <script>
+        @if(session()->has('success'))
+        swal('', "{{ session()->get('success') }}", 'success');
+        @endif
+    </script>
 
 </body>
 
