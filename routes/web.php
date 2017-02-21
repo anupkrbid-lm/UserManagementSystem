@@ -19,6 +19,7 @@ Route::get('/', function () {
 
 
 Route::get('/','StartsController@website')->name('home');
+
 Route::get('/getstarted','AuthsController@index');
 
 Route::post('/register', [
@@ -30,6 +31,13 @@ Route::post('/login', [
 	'uses' => 'AuthsController@login',
 	'as' => 'app.login'
 ]);
+
+Route::get('/login/admin','AdminsController@index')->name('admin');
+
+// Route::post('/login/admin',[
+// 	'uses' => 'AdminsController@index',
+// 	'as' => 'app.admin',
+// 	])->name('admin');
 
 
 // Route::get('/test', function () {

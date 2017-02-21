@@ -65,10 +65,8 @@ class AuthsController extends Controller
         if(! auth()->attempt(request(['email','password'])))
             return redirect()->back()->with('error','Oops..! Invalid Credentials.');
         else
-        {
-            return redirect()->home()->with('success','Good Job..! You have Signed In.');
-        }
-
+            return redirect()->route('admin')->with('success','Good Job..! You have Signed In.');
+    
     }
 
 
