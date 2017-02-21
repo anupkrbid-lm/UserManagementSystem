@@ -18,7 +18,7 @@
         <!-- /.container-fluid -->
     </nav>
 
- <div class="form">
+<div class="form">
             
             <ul class="tab-group">
                 <li class="tab"><a href="#login">Log In</a></li>
@@ -120,6 +120,7 @@
                 </div>
                 
             </div><!-- tab-content -->
-            
+  
     </div>
+
 @endsection('content')

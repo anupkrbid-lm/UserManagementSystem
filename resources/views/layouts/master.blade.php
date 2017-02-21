@@ -54,7 +54,7 @@
                 <a class="navbar-brand" href="{{ url('/') }}">User  Management  System</a>
             </div>
 
-
+            
     @yield('content')
 
 
