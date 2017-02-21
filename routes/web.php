@@ -17,9 +17,6 @@ Route::get('/', function () {
 
 */
 
-
-Route::get('/','StartsController@website')->name('home');
-
 Route::get('/getstarted','AuthsController@index');
 
 Route::post('/register', [
@@ -33,6 +30,13 @@ Route::post('/login', [
 ]);
 
 Route::get('/login/admin','AdminsController@index')->name('admin');
+
+Route::get('/test', function () {
+    return view('ums_home');
+});
+Route::get('/', function () {
+    return view('home');
+})->name('home');
 
 // Route::post('/login/admin',[
 // 	'uses' => 'AdminsController@index',
