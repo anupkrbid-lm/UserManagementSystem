@@ -2278,6 +2278,7 @@ th {
 }
 .table > thead > tr > th {
   vertical-align: bottom;
+  text-align: center;
   border-bottom: 2px solid #ddd;
 }
 .table > caption + thead > tr:first-child > th,

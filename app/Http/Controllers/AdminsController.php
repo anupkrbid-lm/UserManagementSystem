@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
 
 class AdminsController extends Controller
 {
@@ -11,28 +12,32 @@ class AdminsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
     {
-        return view('admin.index');
+        return view('admin_home');
 
     }
+ 
+    public function user_manage()
+    {   
+        $users = User::all();
+        return view('admin_user_manage', ['users' => $users]);
+    }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function delete($id)
     {
-        //
+       // User::delete(Sid);
+        $user = User::find($id);
+        if($user){
+            $user->delete();
+            return redirect()->back()->with('success','Record Deleted..');
+        }
+        else{
+            return redirect()->back()->with('error','Record not Found..');
+        }
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         //
@@ -78,8 +83,5 @@ class AdminsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        //
-    }
+        
 }

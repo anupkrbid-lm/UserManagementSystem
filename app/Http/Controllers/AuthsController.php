@@ -62,10 +62,10 @@ class AuthsController extends Controller
     public function login()
     {
         // Attempt to aythenticate the user
-        if(! auth()->attempt(request(['email','password']))){
-            return redirect()->back()->with('error','Oops..! Invalid Credentials.');
+        if(auth()->attempt(request(['email','password']))){
+            return redirect()->route('admin');
         }else{
-            return redirect()->route('admin')->with('success','Good Job..! You have Signed In.');
+            return redirect()->back()->with('error','Oops..! Invalid Credentials.');
         }
     
     }

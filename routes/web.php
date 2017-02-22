@@ -29,11 +29,10 @@ Route::post('/login', [
 	'as' => 'app.login'
 ]);
 
-Route::get('/login/admin','AdminsController@index')->name('admin');
+Route::get('/admin/dashboard','AdminsController@index')->name('admin');
+Route::get('/admin/manage/users','AdminsController@user_manage')->name('admin_user_manage');
+Route::delete('/admin/manage/users/delete/{id}','AdminsController@delete');
 
-Route::get('/test', function () {
-    return view('ums_home');
-});
 Route::get('/', function () {
     return view('home');
 })->name('home');
@@ -44,8 +43,8 @@ Route::get('/', function () {
 // 	])->name('admin');
 
 
-// Route::get('/test', function () {
-//     return view('index');
-// });
+Route::get('/test', function () {
+    return view('layouts.admin');
+});
 
 
