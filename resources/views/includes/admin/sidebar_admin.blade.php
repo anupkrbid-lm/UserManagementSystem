@@ -2,10 +2,10 @@
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
                     <li class="active">
-                        <a href="{{ url('/admin/dashboard') }}""><i class="fa fa-fw fa-dashboard"></i> Dashboard </a>
+                        <a href="{{ route('admin.get.dashboard') }}""><i class="fa fa-fw fa-dashboard"></i> Dashboard </a>
                     </li>
                     <li>
-                        <a href="{{ url('/admin/manage/users' ) }}"><i class="fa fa-fw fa-user"></i> Manage Users </a>
+                        <a href="{{ route('admin.get.allUsers' ) }}"><i class="fa fa-fw fa-users"></i> User Management </a>
                     </li>
 
 <!--     Charts, Tables, Forms, Bootstrap Elements, Manage Users DropDown Bootstrap Grid, Blank Page and RTL Dashboard Commenteds               

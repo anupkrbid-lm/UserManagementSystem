@@ -8,107 +8,118 @@ use App\User;
 class AdminsController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display dasboard page for admin
      *
      * @return \Illuminate\Http\Response
      */
-
-    public function index()
+    public function dashboard()
     {
-        return view('admin_home');
-
+        return view('admin.dashboard');
     }
  
-    public function user_manage()
+    public function allUsers()
     {   
         $users = User::all();
-        return view('admin_user_manage', ['users' => $users]);
+        
+        return view('admin.users.all', ['users' => $users]);
     }
 
-    public function delete($id)
+    public function addUser()
     {
-       // User::delete(Sid);
-        $user = User::find($id);
-        if($user){
-            if($user->delete()){
-                return redirect()->back()->with('success','Record Deleted..');
-            }else{
-                return redirect()->back()->with('error','Record could not be deleted..');
+        return view('admin.users.add');
+    }
+
+    /**
+     * Creates a new user and persistes into database.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return \Illumintae\Http\Response
+     */
+    public function createUser(Request $request)
+    {
+        $user = User::where('email', '=', $request->email)->first();
+        
+        if ($user) {
+            return redirect()->back()->with('error', "Sorry this email is already registerd!");
+        } else {
+            $user = new User();
+
+            if ($request->password==$request->cnf_password) {
+                /** Request a new data using the requst data */
+                $user->first_name = $request->first_name;
+                $user->last_name = $request->last_name;
+                $user->sex = ($request->sex == "male") ? 1 : (($request->sex == "female") ? 2 : 0);
+                $user->email = $request->email;
+                // $user->profile_picture = $request->profile_picture;
+                $user->password = bcrypt($request->password);
+                /* Save if to the database */
+                if ($user->save()) {
+                    /** Redirect back to add user page */
+                    return redirect()->back()->with('success', "Successfully added a new user!");
+                } else {
+                    return redirect()->back()->with('success', "Something went wrong, please try again later!");
+                }
+            } else {
+                return redirect()->back()->with('error', "Password and confirm password should be matched!");
             }
         }
-        else{
-            return redirect()->back()->with('error','Record not Found..');
-        }
     }
 
-        //
-    public function store(Request $request)
-    {
-        //
-    }
-
-    public function findUpdate($id)
-    {
+    public function viewUser($id) {
         $user = User::find($id);
-        if($user){
-            return view('admin_user_update', ['user' => $user]);
-        }
-    }
 
-    public function update(Request $request, $id)
-    {
-        $user = User::find($id);
         if ($user) {
-            // dd($user);
-            // Request a new data using the requst data
+            return $user;
+            //return view('admin.users.view');
+        } else {
+            return redirect()->back()->with('error', "Sorry this user doesn't exist!");
+        }
+    }
+
+    public function editUser($id)
+    {
+        $user = User::find($id);
+        
+        if ($user) {
+            return view('admin.users.edit', ['user' => $user]);
+        } else {
+            return redirect()->back()->with('error', "Sorry this user doen't exist!");
+        }
+    }
+
+    public function updateUser(Request $request, $id)
+    {
+        $user = User::find($id);
+        
+        if ($user) {
+            /** Request a new data using the requst data */
             $user->first_name = $request->first_name;
             $user->last_name = $request->last_name;
-            $user->sex = $request->sex=="male"?1:($request->sex=="female"?2:0);
+            $user->sex = ($request->sex == "male") ? 1 : (($request->sex == "female") ? 2 :0);
             // $user->profile_picture = $request->profile_picture;
+            
             if ($user->save()) {
-                return redirect()->back()->with('success','Record Updated!');
+                return redirect()->back()->with('success', "Successfully updated user's details!");
             } else {
-                return redirect()->back()->with('error','Record could not be updated!');
+                return redirect()->back()->with('error', "Something went wrong, please try again later!");
             }
         } else {
-            return redirect()->back()->with('error','Record not found!');
+            return redirect()->back()->with('error', "Sorry this user doen't exist!");
         }
     }
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+
+    public function deleteUser($id)
     {
-        //
+        $user = User::find($id);
+
+        if ($user) {
+            if ($user->delete()) {
+                return redirect()->back()->with('success', "Successfully deleted this user!");
+            } else {
+                return redirect()->back()->with('error', "Something went wrong, please try again later!");
+            }
+        } else {
+            return redirect()->back()->with('error', "Sorry this user doen't exist!");
+        }
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-        
 }

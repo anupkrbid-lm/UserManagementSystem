@@ -17,6 +17,10 @@ Route::get('/', function () {
 
 */
 
+Route::get('/', function () {
+    return view('home');
+})->name('home');
+
 Route::get('/getstarted','AuthsController@index');
 
 Route::post('/register', [
@@ -29,25 +33,68 @@ Route::post('/login', [
 	'as' => 'app.login'
 ]);
 
-Route::get('/admin/dashboard','AdminsController@index')->name('admin');
-Route::get('/admin/manage/users','AdminsController@user_manage')->name('admin_user_manage');
-Route::delete('/admin/manage/users/delete/{id}','AdminsController@delete');
-Route::get('/admin/manage/users/update/{id}','AdminsController@findUpdate');
-Route::put('/admin/manage/users/update/{id}','AdminsController@update');
-Route::patch('/admin/manage/users/update/{id}','AdminsController@update')->name('admin_user_update');
+Route::post('/logout', [
+    'uses' => 'AuthsController@logout',
+    'as' => 'app.logout'
+]);
 
-Route::get('/', function () {
-    return view('home');
-})->name('home');
+Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
+    Route::get('dashboard', [
+        'uses' => 'AdminsController@dashboard',
+        'as' => 'admin.get.dashboard'
+    ]);
+
+    Route::group(['prefix' => 'manage'], function () {
+        /** User CRUD resources */
+        Route::group(['prefix' => 'users'], function () {
+            Route::get('/', [
+                'uses' => 'AdminsController@allUsers',
+                'as' => 'admin.get.allUsers'
+            ]);
+            Route::get('add', [
+                'uses' => 'AdminsController@addUser',
+                'as' => 'admin.get.addUser'
+            ]);
+            Route::post('create', [
+                'uses' => 'AdminsController@createUser',
+                'as' => 'admin.post.createUser'
+            ]);
+            Route::get('view/{id}', [
+                'uses' => 'AdminsController@viewUser',
+                'as' => 'admin.get.viewUser'
+            ]);
+            Route::get('edit/{id}', [
+                'uses' => 'AdminsController@editUser',
+                'as' => 'admin.get.editUser'
+            ]);
+            Route::put('update/{id}', [
+                'uses' => 'AdminsController@updateUser',
+                'as' => 'admin.put.updateUser'
+            ]);
+            Route::patch('update/{id}', [
+                'uses' => 'AdminsController@updateUser',
+                'as' => 'admin.patch.updateUser'
+            ]);
+            Route::delete('delete/{id}', [
+                'uses' => 'AdminsController@deleteUser',
+                'as' => 'admin.delete.deleteUser'
+            ]);
+        });
+    });
+});
+
 
 // Route::post('/login/admin',[
 // 	'uses' => 'AdminsController@index',
 // 	'as' => 'app.admin',
 // 	])->name('admin');
 
+// Route::get('/admin/manage/users/add', function () {
+//     return view('admin_user_add');
+// });
 
 Route::get('/test', function () {
-    return view('admin_user_update');
+    return view('admin_user_add');
 });
 
 

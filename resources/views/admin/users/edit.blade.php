@@ -17,7 +17,7 @@
                                  <a href="{{ url('/admin/dashboard') }}"><i class="fa fa-dashboard"></i> Dashboard</a>
                             </li>
                             <li>
-                                 <a href="{{ url('/admin/manage/users') }}"><i class="fa fa-table"></i> Manage Users</a>
+                                 <a href="{{ url('/admin/manage/users') }}"><i class="fa fa-table"></i> User Management</a>
 
                             </li>
                             <li class="active">
@@ -46,9 +46,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label>Sex</label>
-                            </div>
-                            <div class="form-group">
+                                <label>Sex </label>
                                 <label class="radio-inline">
                                     <input type="radio" name="sex" value="male" {{ $user->sex == '1' ? 'checked="checked"' : null }} required />Male
                                 </label>
@@ -60,14 +58,14 @@
                                 </label>
                             </div>
 
-                            <div class="form-group">
+<!--                             <div class="form-group">
                                 <label>Upload Image </label>
                                 <input type="file">
                             </div>
-
+ -->
                             <div class="form-group">
                                 <button type="submit" class="btn btn-primary">Save Updates</button>
-                                <button type="button" class="btn btn-warning"><a href="#" >Reset Changes</a></button>
+                                <button type="button" class="btn btn-warning"><a href="{{ url('/admin/manage/users/update/'.$user->id) }}" >Reset Changes</a></button>
                                 <button type="button" class="btn btn-danger"><a href="{{ url('/admin/manage/users') }}" >Cancel</a> </button>
                                 </div>
                         </form>
