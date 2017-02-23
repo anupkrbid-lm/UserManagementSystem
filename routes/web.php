@@ -32,6 +32,9 @@ Route::post('/login', [
 Route::get('/admin/dashboard','AdminsController@index')->name('admin');
 Route::get('/admin/manage/users','AdminsController@user_manage')->name('admin_user_manage');
 Route::delete('/admin/manage/users/delete/{id}','AdminsController@delete');
+Route::get('/admin/manage/users/update/{id}','AdminsController@findUpdate');
+Route::put('/admin/manage/users/update/{id}','AdminsController@update');
+Route::patch('/admin/manage/users/update/{id}','AdminsController@update')->name('admin_user_update');
 
 Route::get('/', function () {
     return view('home');
@@ -44,7 +47,7 @@ Route::get('/', function () {
 
 
 Route::get('/test', function () {
-    return view('layouts.admin');
+    return view('admin_user_update');
 });
 
 
