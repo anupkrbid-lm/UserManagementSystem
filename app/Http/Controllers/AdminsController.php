@@ -69,8 +69,7 @@ class AdminsController extends Controller
         $user = User::find($id);
 
         if ($user) {
-            return $user;
-            //return view('admin.users.view');
+            return view('admin.users.view', ['user' => $user]);
         } else {
             return redirect()->back()->with('error', "Sorry this user doesn't exist!");
         }
