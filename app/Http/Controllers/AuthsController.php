@@ -43,6 +43,7 @@ class AuthsController extends Controller
                 $user->first_name = $request->first_name;
                 $user->last_name = $request->last_name;
                 $user->sex = $request->sex=="male"?1:($request->sex=="female"?2:0);
+                $user->is_admin = 0;
                 $user->email = $request->email;
                 $user->password = bcrypt($request->password);
 
@@ -64,11 +65,11 @@ class AuthsController extends Controller
     {
         // Attempt to aythenticate the user
         if( auth()->attempt(request(['email','password'])) ) {
-            $users=User::where('email', '=', $request->email)->first();
-/*            session(['key' => $users->id]);
-            dd(session('key'));*/
+            $users = User::where('email', '=', $request->email)->first();
+/*              session(['key' => $users->id]);
+                dd(session('key'));*/
             return redirect()->route('admin.get.dashboard');
-        }else{
+        } else {
             return redirect()->back()->with('error','Oops..! Invalid Credentials.');
         }
     
@@ -79,5 +80,20 @@ class AuthsController extends Controller
         Auth::logout();
         return redirect()->route('home');
 
+    }
+
+    public function verifyPassword(Request $request)
+    {
+        $data = $request->password;
+        $dataToVerify = User::find(Auth::user()->id);
+        if( bcrypt($data) == $dataToVerify->password )
+            return response()->json(['isMatched' => true]);
+        else
+            return response()->json(['isMatched' => true]);
+        /*$data = $request->session()->all(); 
+            $obj=User::find('id');
+            session(['key' => $users->id]);
+            dd(session('key'));*/
+    
     }
 }

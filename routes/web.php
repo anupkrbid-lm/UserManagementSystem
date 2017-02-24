@@ -28,6 +28,11 @@ Route::post('/register', [
 	'as' => 'app.register'
 ]);
 
+Route::post('/verify-password', [
+    'uses' => 'AuthsController@verifyPassword',
+    'as' => 'app.post.verifyPassword'
+]);
+
 Route::post('/login', [
 	'uses' => 'AuthsController@login',
 	'as' => 'app.login'

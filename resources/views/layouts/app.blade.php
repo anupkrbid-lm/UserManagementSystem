@@ -72,16 +72,16 @@
 
         <script>
             @if(session()->has('error'))
-            swal('', "{{ session()->get('error') }}", 'error');
+                swal('', "{{ session()->get('error') }}", 'error');
             @endif
         </script>
-<!--
+
         <script>
             @if(session()->has('success'))
-            swal('', "{{ session()->get('success') }}", 'success');
+                swal('', "{{ session()->get('success') }}", 'success');
             @endif
         </script>
--->
+
     </body>
 </html>
 

@@ -62,6 +62,16 @@
                             </div>
 
                             <div class="form-group">
+                                <label>Is Admin </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="is_admin" value="1" required />Yes
+                                </label>
+                                <label class="radio-inline">
+                                   <input type="radio" name="is_admin" value="0" required />No
+                                </label>
+                            </div>
+
+                            <div class="form-group">
                                 <label>
                                     Email
                                 </label>

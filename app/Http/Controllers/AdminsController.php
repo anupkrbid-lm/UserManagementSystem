@@ -15,6 +15,7 @@ class AdminsController extends Controller
      */
     public function dashboard()
     {
+
         return view('admin.dashboard');
     }
 
@@ -32,8 +33,8 @@ class AdminsController extends Controller
     public function allUsers()
     {   
         $users = User::all();
-        
-        return view('admin.users.all', ['users' => $users]);
+        $adminUser = User::find(Auth::user()->id);
+        return view('admin.users.all', ['users' => $users], ['adminUser' => $adminUser]);
     }
 
     public function addUser()
@@ -61,6 +62,7 @@ class AdminsController extends Controller
                 $user->first_name = $request->first_name;
                 $user->last_name = $request->last_name;
                 $user->sex = ($request->sex == "male") ? 1 : (($request->sex == "female") ? 2 : 0);
+                $user->is_admin = $request->is_admin;
                 $user->email = $request->email;
                 // $user->profile_picture = $request->profile_picture;
                 $user->password = bcrypt($request->password);

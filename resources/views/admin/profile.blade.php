@@ -30,7 +30,9 @@
 
                 <div class="row">
                     <div class="col-lg-6">
+                        
                         <br/>
+                        
                         <fieldset disabled>
 
                             <div class="form-group">
@@ -58,15 +60,22 @@
                             </div>
 
                             <div class="form-group">
+                                <label>Is Admin </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="is_admin" value="male" {{ $user->is_admin == '1' ? 'checked="checked"' : null }} required />Yes
+                                </label>
+                                <label class="radio-inline">
+                                   <input type="radio" name="is_admin" value="female" {{ $user->is_admin == '0' ? 'checked="checked"' : null }} required />No
+                                </label>
+                            </div>
+
+                            <div class="form-group">
                                 <label>Email Id</label>
                                 <input class="form-control" placeholder="Enter Text" type="text" name="last_name" value="{{ $user->email }}" required autocomplete="off">
                             </div>
-    <!--                             <div class="form-group">
-                                <label>Upload Image </label>
-                                <input type="file">
-                            </div>
-    -->
+
                         </fieldset>
+
                         <div class="form-group">
                             <a href="{{ route('admin.get.editUser',['id' => $user->id]) }}">
                                 <button type="button" class="btn btn-warning">
@@ -75,20 +84,61 @@
                             </a>
                             <button type="button" class="btn btn-danger"><a href="{{ route('admin.get.allUsers') }}" >Cancel</a> </button>
                             </div>
-     
                     </div>
 
                     <div class="col-lg-6">
                         <div class="form-group">
-                              <button type="button" class="btn btn-primary pull-right">
+                              <button id="btn_update_pass" type="button" class="btn btn-primary pull-right">
                                     <i class="fa fa-key">
                                     </i>
                                     Update Password
                                 </button>
                         </div>
 
+                        <br/>
 
+                        <div id="currentPasswordBlock"  style="display: none">
+                            <div class="form-group">
+                                <label>Type Current Password</label>
+                                <input id="txt_current_pass" class="form-control" placeholder="Enter Text" type="Password" name="last_name" 
+                                required autocomplete="off">
+                            </div>
+                            <div class="form-group">
+                                <button id="btn_verify_pass" type="button" class="btn btn-warning">
+                                    <i class="fa fa-unlock-alt">
+                                    </i>
+                                    Verify Password
+                                </button>
+                                <button id="cancel1" type="button" class="btn btn-danger">
+                                    Cancel
+                                </button>
+                            </div>
+                        </div>
 
+                        <div id="newPasswordBlock"  style="display: none">
+                            <div class="form-group">
+                                <label>Type New Password</label>
+                                <input class="form-control" placeholder="Enter Text" type="Password" name="last_name" 
+                                required autocomplete="off">
+                            </div>         
+                            
+                            <div class="form-group">
+                                <label>Confirm New Password</label>
+                                <input id="txt_change_pass" class="form-control" placeholder="Enter Text" type="Password" name="last_name" 
+                                required autocomplete="off">
+                            </div>                                           
+
+                            <div class="form-group">   
+                                <button id="btn_change_pass" type="button" class="btn btn-success">
+                                    <i class="fa fa-key">
+                                    </i>
+                                    Change Password
+                                </button>
+                                <button id="cancel2" type="button" class="btn btn-danger">
+                                    Cancel
+                                </button>
+                            </div>
+                        </div>
 
                     </div>
                     <!-- 
@@ -187,5 +237,73 @@
 
         </div>
         <!-- /#page-wrapper -->
+
 @endsection
 
+@section('scripts')
+
+    <script>
+        $(document).ready(function () {
+            $('#btn_update_pass').click(function () {
+                $('#currentPasswordBlock').show();
+                $('#newPasswordBlock').hide();
+                $(this).prop('disabled',true);
+            });
+        });
+    </script>
+
+{{--     <script>
+        $(document).ready(function () {
+            $('#btn_verify_pass').click(function () {
+                $('#currentPasswordBlock').hide();
+                $('#newPasswordBlock').show();
+                $('#btn_update_pass').prop('disabled',true);
+            });
+        });
+    </script> --}}
+
+    <script>
+        $(document).ready(function () {
+            $('#btn_verify_pass').click(function () {
+                $.ajax({
+                    type : "post",
+                    url : "{{ route('app.post.verifyPassword') }}",
+                    data : {
+                        _token : "{{ csrf_token() }}",
+                        password : $('#txt_current_pass').val(),
+                    },
+                    success: function(response) {
+                        if (response.isMatched == true) {
+                            $('#currentPasswordBlock').hide();
+                            $('#newPasswordBlock').show();
+                            $('#btn_update_pass').prop('disabled',true);
+                        } else {
+                            swal('error','Type the correct password!');
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $('#btn_change_pass').click(function () {
+                $('#currentPasswordBlock').hide();
+                $('#newPasswordBlock').hide();
+                $('#btn_update_pass').prop('disabled',false);
+            });
+        });
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $("#cancel1,#cancel2").click(function () {
+                $('#currentPasswordBlock').hide();
+                $('#newPasswordBlock').hide();
+                $('#btn_update_pass').prop('disabled',false);
+            });
+        });
+    </script>
+
+@endsection

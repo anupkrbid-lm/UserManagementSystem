@@ -57,6 +57,16 @@
                             </div>
 
                             <div class="form-group">
+                                <label>Is Admin </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="is_admin" value="1" {{ $user->is_admin == '1' ? 'checked="checked"' : null }} required />Yes
+                                </label>
+                                <label class="radio-inline">
+                                   <input type="radio" name="is_admin" value="0" {{ $user->is_admin == '0' ? 'checked="checked"' : null }} required />No
+                                </label>
+                            </div>
+
+                            <div class="form-group">
                                 <label>Email Id</label>
                                 <input class="form-control" placeholder="Enter Text" type="text" name="last_name" value="{{ $user->email }}" required autocomplete="off">
                             </div>

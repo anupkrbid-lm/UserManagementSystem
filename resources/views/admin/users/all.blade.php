@@ -36,6 +36,7 @@
                                     <th>First Name</th>
                                     <th>Last Name</th>
                                     <th>Sex</th>
+                                    <th>Status</th>
                                     <th>Email Id</th>
                                     <th>Profile Picture</th>
                                     <th>Actions</th>
@@ -47,6 +48,7 @@
                                         <td>{{ $user->first_name }}</td>
                                         <td>{{ $user->last_name }}</td>
                                         <td>{{ $user->sex == 1 ? "Male" : ($user->sex == 2 ? "Female" : "Other") }}</td>
+                                        <td>{{ $user->is_admin == 1 ? "Admin" : "User" }}</td>
                                         <td>{{ $user->email }}</td>
                                         <td>{{ $user->profile_picture }}</td>
                                         <td class="text-center">
@@ -63,12 +65,12 @@
                                             <form method='post' action="{{ route('admin.delete.deleteUser', ['id' => $user->id]) }}"  style="float: left; margin-right: 10px;">
                                                 {{ csrf_field() }}
                                                 {{ method_field('delete') }}
-                                                <button type="submit" class="btn btn-md btn-danger">
+                                                <button type="submit" class="btn btn-md btn-danger" {{ (($user->id == $adminUser->id) || ($user->is_admin == 1 )) ? 'disabled="disabled"' : null }}>
                                                     <i class="fa fa-user-times"></i> Delete
                                                 </button>
                                             </form>
                                             <a href="#"  style="float: left;">
-                                                <button type="button" class="btn btn-md btn-default">
+                                                <button type="button" class="btn btn-md btn-primary" {{ ($user->id == $adminUser->id) ? 'disabled="disabled"' : null }}>
                                                     <i class="fa fa-ban"></i> Block
                                                 </button>
                                             </a>
