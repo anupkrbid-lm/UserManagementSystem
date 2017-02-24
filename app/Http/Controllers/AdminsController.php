@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use Auth;
 
 class AdminsController extends Controller
 {
@@ -15,6 +16,17 @@ class AdminsController extends Controller
     public function dashboard()
     {
         return view('admin.dashboard');
+    }
+
+    public function profile()
+    {
+
+        /** Incase  of Custom Session
+         * $value = session('key');
+         * dd($value);
+         */
+        $user = User::find(Auth::user()->id);
+        return view('admin.profile',['user' => $user]);
     }
  
     public function allUsers()

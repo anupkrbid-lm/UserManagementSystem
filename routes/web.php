@@ -43,7 +43,10 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
         'uses' => 'AdminsController@dashboard',
         'as' => 'admin.get.dashboard'
     ]);
-
+    Route::get('profile', [
+        'uses' => 'AdminsController@profile',
+        'as' => 'admin.get.profile'
+    ]);
     Route::group(['prefix' => 'manage'], function () {
         /** User CRUD resources */
         Route::group(['prefix' => 'users'], function () {
@@ -94,7 +97,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
 // });
 
 Route::get('/test', function () {
-    return view('admin_user_add');
+    return view('admin.profile');
 });
 
 

@@ -101,10 +101,14 @@
             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-cogs"></i> <b class="caret"></b></a>
             <ul class="dropdown-menu">
                 <li>
-                    <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
+                    <a href="{{ route('admin.get.profile') }}">
+                        <i class="fa fa-fw fa-user">
+                        </i>
+                         Profile
+                    </a>
                 </li>
                 <li>
-                    <a target="_blank" href="{{ url('/') }}"><i class="fa fa-fw fa-desktop"></i> View Front End</a>
+                    <a target="_blank" href="{{ route('home') }}"><i class="fa fa-fw fa-desktop"></i> View Front End</a>
                 </li>
 <!-- Inbox & Settings Commented From Profile Dropdown
                 <li>
@@ -120,7 +124,9 @@
                     <form method='post' action="{{ route('app.logout') }}">
                         {{ csrf_field() }}
                         <button type="submit">
-                            <i class="fa fa-power-off"></i> Log Out
+                            <i class="fa fa-power-off">
+                            </i>
+                             Log Out
                         </button>
                     </form>
                 </li>

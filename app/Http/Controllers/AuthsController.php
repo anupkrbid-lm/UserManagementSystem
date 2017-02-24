@@ -60,10 +60,13 @@ class AuthsController extends Controller
         }
     }
 
-    public function login()
+    public function login(Request $request)
     {
         // Attempt to aythenticate the user
-        if(auth()->attempt(request(['email','password']))){
+        if( auth()->attempt(request(['email','password'])) ) {
+            $users=User::where('email', '=', $request->email)->first();
+/*            session(['key' => $users->id]);
+            dd(session('key'));*/
             return redirect()->route('admin.get.dashboard');
         }else{
             return redirect()->back()->with('error','Oops..! Invalid Credentials.');
