@@ -7,25 +7,23 @@
                     <li>
                         <a href="{{ route('admin.get.allUsers' ) }}"><i class="fa fa-fw fa-users"></i> User Management </a>
                     </li>
-
-<!--     Charts, Tables, Forms, Bootstrap Elements, Manage Users DropDown Bootstrap Grid, Blank Page and RTL Dashboard Commenteds               
                     <li>
-                        <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-user"></i> Manage Users <i class="fa fa-fw fa-caret-down"></i></a>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-bars"></i> CMS Management <i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="demo" class="collapse">
                             <li>
-                                <a href="#"><i class="fa fa-user-plus"></i> Add Users </a>
+                                <a href="#"> Change 1 </a>
                             </li>
                             <li>
-                                <a href="#"> View Users </a>
+                                <a href="#"> Change 2 </a>
                             </li>
                             <li>
-                                <a href="#"> Edit Users </a>
-                            </li>
-                            <li>
-                                <a href="#"> Delete Users </a>
+                                <a href="#"> Change 3 </a>
                             </li>
                         </ul>
                     </li>
+
+<!--     Charts, Tables, Forms, Bootstrap Elements, Manage Users DropDown Bootstrap Grid, Blank Page and RTL Dashboard Commenteds               
+                    
 
                     <li>
                         <a href="charts.html"><i class="fa fa-fw fa-bar-chart-o"></i> Charts</a>

@@ -64,11 +64,15 @@ class AuthsController extends Controller
     public function login(Request $request)
     {
         // Attempt to aythenticate the user
-        if( auth()->attempt(request(['email','password'])) ) {
+        if ( auth()->attempt(request(['email','password'])) ) {
             $users = User::where('email', '=', $request->email)->first();
 /*              session(['key' => $users->id]);
                 dd(session('key'));*/
-            return redirect()->route('admin.get.dashboard');
+            if ( $users->is_admin == 1 ) {
+                return redirect()->route('admin.get.dashboard');
+            } else {
+                return redirect()->route('user.get.profile');
+            }
         } else {
             return redirect()->back()->with('error','Oops..! Invalid Credentials.');
         }
@@ -89,7 +93,7 @@ class AuthsController extends Controller
         if( bcrypt($data) == $dataToVerify->password )
             return response()->json(['isMatched' => true]);
         else
-            return response()->json(['isMatched' => true]);
+            return response()->json(['isMatched' => false]);
         /*$data = $request->session()->all(); 
             $obj=User::find('id');
             session(['key' => $users->id]);

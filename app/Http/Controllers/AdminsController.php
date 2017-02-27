@@ -109,6 +109,7 @@ class AdminsController extends Controller
             $user->first_name = $request->first_name;
             $user->last_name = $request->last_name;
             $user->sex = ($request->sex == "male") ? 1 : (($request->sex == "female") ? 2 :0);
+            $user->is_admin = $request->is_admin;
             // $user->profile_picture = $request->profile_picture;
             
             if ($user->save()) {

@@ -92,17 +92,20 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
 });
 
 
-// Route::post('/login/admin',[
-// 	'uses' => 'AdminsController@index',
-// 	'as' => 'app.admin',
-// 	])->name('admin');
-
-// Route::get('/admin/manage/users/add', function () {
-//     return view('admin_user_add');
-// });
+Route::group(['prefix' => 'user', 'middleware' => 'auth'], function () {
+    Route::get('profile', [
+        'uses' => 'UsersController@profile',
+        'as' => 'user.get.profile'
+    ]);
+});
 
 Route::get('/test', function () {
-    return view('admin.profile');
+    return view('user.index');
 });
+
+Route::get('/testing', function () {
+    return view('user.profile');
+});
+
 
 

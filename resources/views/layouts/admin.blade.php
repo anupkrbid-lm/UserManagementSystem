@@ -17,9 +17,6 @@
     <!-- Custom CSS -->
     <link href="/css/sb-admin.css" rel="stylesheet">
 
-    <!-- Morris Charts CSS -->
-    <link href="/css/plugins/morris.css" rel="stylesheet">
-
     <!-- Sweet Alert 2-->
     <link href="https://cdn.jsdelivr.net/sweetalert2/6.4.2/sweetalert2.min.css" rel="stylesheet">
 
@@ -63,11 +60,6 @@
 
     <!-- Bootstrap Core JavaScript -->
     <script src="/js/bootstrap.min.js"></script>
-
-    <!-- Morris Charts JavaScript -->
-    {{-- <script src="/js/plugins/morris/raphael.min.js"></script>
-    <script src="/js/plugins/morris/morris.min.js"></script>
-    <script src="/js/plugins/morris/morris-data.js"></script> --}}
     
     <!-- Sweet Alert 2 -->
     <script src='https://cdn.jsdelivr.net/sweetalert2/6.4.2/sweetalert2.min.js'></script>
