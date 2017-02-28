@@ -15,7 +15,7 @@
         <link rel="stylesheet" href="/assets/plugins/font-awesome/css/font-awesome.css">
         
         <!-- Theme CSS -->  
-        <link id="theme-style" rel="stylesheet" href="/assets/css/styles-6.css">
+        <link id="theme-style" rel="stylesheet" href="/assets/css/styles-3.css">
         <link id="theme-style" rel="stylesheet" href="/assets/css/style.css"> 
 
         <link href='https://fonts.googleapis.com/css?family=Roboto:400,500,400italic,300italic,300,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
@@ -43,13 +43,7 @@
 
          <div id="wrapper">
          @include('includes.user.navigation_user')
-            <div id="page-wrapper">
-                <div class="container-fluid"> 
                     @yield('content')
-                </div>
-                <!-- /.container-fluid -->
-            </div>
-            <!-- /#page-wrapper -->
         </div> 
         <!-- /#wrapper -->
 

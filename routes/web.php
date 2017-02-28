@@ -28,14 +28,24 @@ Route::post('/register', [
 	'as' => 'app.register'
 ]);
 
+Route::post('/login', [
+    'uses' => 'AuthsController@login',
+    'as' => 'app.login'
+]);
+
 Route::post('/verify-password', [
     'uses' => 'AuthsController@verifyPassword',
     'as' => 'app.post.verifyPassword'
 ]);
 
-Route::post('/login', [
-	'uses' => 'AuthsController@login',
-	'as' => 'app.login'
+Route::put('/change-password', [
+    'uses' => 'AuthsController@changePassword',
+    'as' => 'app.put.changePassword'
+]);
+
+Route::patch('/change-password', [
+    'uses' => 'AuthsController@changePassword',
+    'as' => 'app.patch.changePassword'
 ]);
 
 Route::post('/logout', [
@@ -99,6 +109,8 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth'], function () {
     ]);
 });
 
+
+
 Route::get('/test', function () {
     return view('user.index');
 });
@@ -106,6 +118,3 @@ Route::get('/test', function () {
 Route::get('/testing', function () {
     return view('user.profile');
 });
-
-
-

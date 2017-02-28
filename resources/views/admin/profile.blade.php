@@ -115,30 +115,32 @@
                             </div>
                         </div>
 
-                        <div id="newPasswordBlock"  style="display: none">
-                            <div class="form-group">
-                                <label>Type New Password</label>
-                                <input id="txt_new__pass" class="form-control" placeholder="Enter Text" type="Password" name="last_name" 
-                                required autocomplete="off">
-                            </div>         
-                            
-                            <div class="form-group">
-                                <label>Confirm New Password</label>
-                                <input id="txt_cnf_new_pass" class="form-control" placeholder="Enter Text" type="Password" name="last_name" 
-                                required autocomplete="off">
-                            </div>                                           
+                        <form method='post' action="{{ url( '/change-update' ) }}">
+                            <div id="newPasswordBlock"  style="display: none">
+                                <div class="form-group">
+                                    <label>Type New Password</label>
+                                    <input id="txt_new__pass" class="form-control" placeholder="Enter Text" type="Password" name="last_name" 
+                                    required autocomplete="off">
+                                </div>         
+                                
+                                <div class="form-group">
+                                    <label>Confirm New Password</label>
+                                    <input id="txt_cnf_new_pass" class="form-control" placeholder="Enter Text" type="Password" name="last_name" 
+                                    required autocomplete="off">
+                                </div>                                           
 
-                            <div class="form-group">   
-                                <button id="btn_change_pass" type="button" class="btn btn-success">
-                                    <i class="fa fa-key">
-                                    </i>
-                                    Change Password
-                                </button>
-                                <button id="cancel2" type="button" class="btn btn-danger">
-                                    Cancel
-                                </button>
+                                <div class="form-group">  
+                                        <button id="btn_change_pass" type="submit" class="btn btn-success">
+                                            <i class="fa fa-key">
+                                            </i>
+                                            Change Password
+                                        </button>
+                                        <button id="cancel2" type="button" class="btn btn-danger">
+                                            Cancel
+                                        </button>
+                                </div>
                             </div>
-                        </div>
+                        </form>
 
                     </div>
 
@@ -165,16 +167,6 @@
         });
     </script>
 
-{{--     <script>
-        $(document).ready(function () {
-            $('#btn_verify_pass').click(function () {
-                $('#currentPasswordBlock').hide();
-                $('#newPasswordBlock').show();
-                $('#btn_update_pass').prop('disabled',true);
-            });
-        });
-    </script> --}}
-
     <script>
         $(document).ready(function () {
             $('#btn_verify_pass').click(function () {
@@ -190,8 +182,12 @@
                             $('#currentPasswordBlock').hide();
                             $('#newPasswordBlock').show();
                             $('#btn_update_pass').prop('disabled',true);
+                            return false;
                         } else {
-                            swal('error','Type the correct password!');
+                            $('#currentPasswordBlock').hide();
+                            $('#newPasswordBlock').hide();
+                            $('#btn_update_pass').prop('disabled',false);
+                            swal('error', response.error ,'error');
                         }
                     }
                 });
@@ -199,6 +195,35 @@
         });
     </script>
 
+
+
+    <script>
+        $(document).ready(function () {
+            $('#btn_change_pass').click(function () {
+                $.ajax({
+                    type : "patch",
+                    url : "{{ url('/change-password') }}",
+                    data : {
+                        _token : "{{ csrf_token() }}",
+                        new_password : $('#txt_new_pass').val(),
+                        cnf_new_password : $('#xt_cnf_new_pass').val(),
+                    },
+                    success: function(response) {
+                        if (response.isMatched == true) {
+                            $('#currentPasswordBlock').hide();
+                            $('#newPasswordBlock').hide();
+                            $('#btn_update_pass').prop('disabled',false);
+                            swal('success','Password successfully changed!', 'success');
+                        } else {
+                            swal('error', response.error, 'error');
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+
+{{-- 
     <script>
         $(document).ready(function () {
             $('#btn_change_pass').click(function () {
@@ -209,11 +234,15 @@
         });
     </script>
 
+ --}}
     <script>
         $(document).ready(function () {
             $("#cancel1,#cancel2").click(function () {
                 $('#currentPasswordBlock').hide();
+                $('#txt_current_pass').val('');
                 $('#newPasswordBlock').hide();
+                $('#txt_new_pass').val('');
+                $('#txt_cnf_new_pass').val('');
                 $('#btn_update_pass').prop('disabled',false);
             });
         });

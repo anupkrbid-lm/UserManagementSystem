@@ -33,6 +33,7 @@
                         <table class="table table-bordered table-centered table-hover table-striped">
                             <thead>
                                 <tr>
+                                    <th>#</th>
                                     <th>First Name</th>
                                     <th>Last Name</th>
                                     <th>Sex</th>
@@ -43,8 +44,11 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                <?php $i = 0 ?>
                                 @foreach($users as $user)
+                                    <?php $i++ ?>
                                     <tr>
+                                        <td>{{ $i }}</td>
                                         <td>{{ $user->first_name }}</td>
                                         <td>{{ $user->last_name }}</td>
                                         <td>{{ $user->sex == 1 ? "Male" : ($user->sex == 2 ? "Female" : "Other") }}</td>

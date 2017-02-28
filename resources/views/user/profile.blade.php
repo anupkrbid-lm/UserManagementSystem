@@ -2,11 +2,11 @@
 
 @section('content')
 
-
+<div class="wrapper">
     <div class="sidebar-wrapper">
         <div class="profile-container">
-            <img class="profile" src="assets/images/profile.png" alt="" />
-            <h1 class="name">Alan Doe</h1>
+            <img class="profile" src="/assets/images/profile.png" alt="" />
+            <h1 class="name"> {{ Auth::user()->first_name." ".Auth::user()->last_name }}</h1>
             <h3 class="tagline">Full Stack Developer</h3>
         </div><!--//profile-container-->
         
@@ -186,7 +186,7 @@
             </div>  
         </section><!--//skills-section-->    
     </div><!--//main-body-->
-
+</div>
 
 
 @endsection

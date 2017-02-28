@@ -88,16 +88,48 @@ class AuthsController extends Controller
 
     public function verifyPassword(Request $request)
     {
-        $data = $request->password;
-        $dataToVerify = User::find(Auth::user()->id);
-        if( bcrypt($data) == $dataToVerify->password )
+        if (\Hash::check($request->password, Auth::user()->password)) { 
             return response()->json(['isMatched' => true]);
-        else
-            return response()->json(['isMatched' => false]);
+        } else {
+            return response()->json([
+                'isMatched' => false,
+                'error' => "Password Incorrect"
+            ]);
+        }
         /*$data = $request->session()->all(); 
             $obj=User::find('id');
             session(['key' => $users->id]);
-            dd(session('key'));*/
-    
+            dd(session('key'));*/   
+    }
+
+    public function changePassword(Request $request)
+    {
+        if ( $request->new_password == $request->cnf_new_password ) {
+            $user = Auth::user();
+
+            if ($user) {
+                /** Request a new data using the requst data */
+                $user->password = \Hash::make($request->new_password);
+               // $user->password = bcrypt($request->new_password);
+                if ($user->save()) {
+                    return response()->json(['isMatched' => true]);
+                } else {
+                    return response()->json([
+                        'isMatched' => false, 
+                        'error' => "Some error occured"
+                    ]);
+                }
+            } else {
+                return response()->json([
+                    'isMatched' => false,
+                    'error' => "No record"
+                ]);
+            }
+        } else {
+            return response()->json([
+                'isMatched' => false, 
+                'error' => "Password did not match!"
+            ]);
+        }
     }
 }
