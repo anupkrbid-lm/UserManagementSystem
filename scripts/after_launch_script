@@ -89,3 +89,5 @@ EOF
 php artisan key:generate
 sudo chmod -R 777 /var/www/html/storage
 sudo chmod -R 777 /var/www/html/bootstrap
+sudo usermod -a -G ubuntu www-data
+sudo service apache2 restart
