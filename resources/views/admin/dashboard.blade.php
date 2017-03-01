@@ -6,7 +6,9 @@
 <div class="row">
     <div class="col-lg-12">
         <h1 class="page-header">
-            Dashboard <small> Statistics Overview</small>
+            <b>    
+                Dashboard <small> :: Statistics Overview</small>
+            </b>    
         </h1>
         <ol class="breadcrumb">
             <li class="active">
@@ -51,7 +53,7 @@
                                             <button type="button" class="btn btn-md btn-primary">
                                                 <i class="fa fa-comments">
                                                 </i>
-                                                 Chat
+                                                 Start Chat
                                             </button>
                                         </a>
                                         <a href="#">

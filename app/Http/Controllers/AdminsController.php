@@ -8,14 +8,9 @@ use Auth;
 
 class AdminsController extends Controller
 {
-    /**
-     * Display dasboard page for admin
-     *
-     * @return \Illuminate\Http\Response
-     */
+    /**  Admin Pannel Operations  */
     public function dashboard()
     {
-
         return view('admin.dashboard');
     }
 
@@ -30,6 +25,7 @@ class AdminsController extends Controller
         return view('admin.profile',['user' => $user]);
     }
  
+    /**  CRUD Operation on Users  */
     public function allUsers()
     {   
         $users = User::all();
@@ -135,5 +131,19 @@ class AdminsController extends Controller
         } else {
             return redirect()->back()->with('error', "Sorry this user doen't exist!");
         }
+    }
+
+    /**  CMS Management  */
+    public function welcomeTitle()
+    {
+        return view('admin.cms.welcome_title');
+    }
+    public function portfolio()
+    {
+        return view('admin.cms.portfolio');
+    }
+    public function aboutUs()
+    {
+        return view('admin.cms.about_us');
     }
 }

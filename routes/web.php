@@ -98,6 +98,21 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
                 'as' => 'admin.delete.deleteUser'
             ]);
         });
+        /** Manage CMS System */
+        Route::group(['prefix' => 'cms'], function () {
+            Route::get('/welcome-title', [
+                'uses' => 'AdminsController@welcomeTitle',
+                'as' => 'admin.get.welcomeTitle'
+            ]);
+            Route::get('/portfolio', [
+                'uses' => 'AdminsController@portfolio',
+                'as' => 'admin.get.portfolio'
+            ]);
+            Route::get('/about-us', [
+                'uses' => 'AdminsController@aboutUs',
+                'as' => 'admin.get.aboutUs'
+            ]);
+        });
     });
 });
 

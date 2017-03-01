@@ -8,16 +8,16 @@
                         <a href="{{ route('admin.get.allUsers' ) }}"><i class="fa fa-fw fa-users"></i> User Management </a>
                     </li>
                     <li>
-                        <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-bars"></i> CMS Management <i class="fa fa-fw fa-caret-down"></i></a>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-list-ul"></i> CMS Management <i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="demo" class="collapse">
                             <li>
-                                <a href="#"> Change 1 </a>
+                                <a href="{{ route('admin.get.welcomeTitle' ) }}"><i class="fa fa-hashtag"></i> Welcome Title </a>
                             </li>
                             <li>
-                                <a href="#"> Change 2 </a>
+                                <a href="{{ route('admin.get.portfolio' ) }}"><i class="fa fa-hashtag"></i> Portfolio </a>
                             </li>
                             <li>
-                                <a href="#"> Change 3 </a>
+                                <a href="{{ route('admin.get.aboutUs' ) }}"><i class="fa fa-hashtag"></i> About Us </a>
                             </li>
                         </ul>
                     </li>

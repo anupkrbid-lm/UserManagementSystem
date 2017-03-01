@@ -7,14 +7,16 @@
             <div class="row">
                 <div class="col-lg-12">
                     <h1 class="page-header">
-                        User Management <small>Statistics Overview</small>
+                        <b>
+                            User Management <small> :: Statistics Overview</small>
+                        </b>
                     </h1>
                     <ol class="breadcrumb">
                         <li>
                             <a href="{{ route('admin.get.dashboard') }}"><i class="fa fa-dashboard"></i> Dashboard</a>
                         </li>
                         <li class="active">
-                            <i class="fa fa-table"></i> User Management
+                            <i class="fa fa-users"></i> User Management
                         </li>
                     </ol>
                 </div>
@@ -74,7 +76,7 @@
                                                 </button>
                                             </form>
                                             <a href="#"  style="float: left;">
-                                                <button type="button" class="btn btn-md btn-primary" {{ ($user->id == $adminUser->id) ? 'disabled="disabled"' : null }}>
+                                                <button id="btn_block" type="button" class="btn btn-md btn-primary" {{ ($user->id == $adminUser->id) ? 'disabled="disabled"' : null }}>
                                                     <i class="fa fa-ban"></i> Block
                                                 </button>
                                             </a>
@@ -89,4 +91,52 @@
         <!-- /.container-fluid -->
     </div>
     <!-- /#page-wrapper -->
+@endsection
+
+@section('scripts')
+
+{{--     
+    <script>
+        $(document).ready(function () {
+            $('#btn_change_pass').click(function () {
+            //    e.preventDefault();
+                $.ajax({
+                    type : "patch",
+                    url : "{{ url('/change-password') }}",
+                    data : {
+                        _token : "{{ csrf_token() }}",
+                        new_password : $('#txt_new_pass').val(),
+                        cnf_new_password : $('#txt_cnf_new_pass').val(),
+                    },
+                    success: function(response) {
+                        if (response.isMatched == true) {
+                            $('#currentPasswordBlock').hide();
+                            $('#txt_current_pass').val("");
+                            $('#newPasswordBlock').hide();
+                            $('#txt_new_pass').val("");
+                            $('#txt_cnf_new_pass').val("");
+                            $('#btn_update_pass').prop('disabled',false);
+                            swal('success','Password successfully changed!', 'success');
+                        } else {
+                            swal('error', response.error, 'error');
+                        }
+                    }
+                });
+            });
+        });
+    </script> 
+    --}}
+
+{{-- 
+    <script>
+        $(document).ready(function () {
+$(document).ready(function(){
+    $('.btn-default').click(function(){
+        $("#btn_block").toggleClass("btn-primary");
+        $("#btn_block").toggle("Text","Unblock");
+            });
+        });
+    </script>
+
+ --}}
 @endsection

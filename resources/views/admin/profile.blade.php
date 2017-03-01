@@ -10,14 +10,16 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">
-                            Profile Details<small> Statistics Overview</small>
+                            <b>
+                                Profile Details<small> :: Statistics Overview</small>
+                            </b>
                         </h1>
                         <ol class="breadcrumb">
                             <li>
                                  <a href="{{ route('admin.get.dashboard') }}"><i class="fa fa-dashboard"></i> Dashboard</a>
                             </li>
                             <li>
-                                 <a href="{{ route('admin.get.allUsers') }}"><i class="fa fa-table"></i> User Management</a>
+                                 <a href="{{ route('admin.get.allUsers') }}"><i class="fa fa-users"></i> User Management</a>
 
                             </li>
                             <li class="active">
@@ -119,7 +121,7 @@
                             <div id="newPasswordBlock"  style="display: none">
                                 <div class="form-group">
                                     <label>Type New Password</label>
-                                    <input id="txt_new__pass" class="form-control" placeholder="Enter Text" type="Password" name="last_name" 
+                                    <input id="txt_new_pass" class="form-control" placeholder="Enter Text" type="Password" name="last_name" 
                                     required autocomplete="off">
                                 </div>         
                                 
@@ -130,7 +132,7 @@
                                 </div>                                           
 
                                 <div class="form-group">  
-                                        <button id="btn_change_pass" type="submit" class="btn btn-success">
+                                        <button id="btn_change_pass" type="button" class="btn btn-success">
                                             <i class="fa fa-key">
                                             </i>
                                             Change Password
@@ -180,11 +182,13 @@
                     success: function(response) {
                         if (response.isMatched == true) {
                             $('#currentPasswordBlock').hide();
+                            $('#txt_current_pass').val("");
                             $('#newPasswordBlock').show();
                             $('#btn_update_pass').prop('disabled',true);
                             return false;
                         } else {
                             $('#currentPasswordBlock').hide();
+                            $('#txt_current_pass').val("");
                             $('#newPasswordBlock').hide();
                             $('#btn_update_pass').prop('disabled',false);
                             swal('error', response.error ,'error');
@@ -200,18 +204,22 @@
     <script>
         $(document).ready(function () {
             $('#btn_change_pass').click(function () {
+            //    e.preventDefault();
                 $.ajax({
                     type : "patch",
                     url : "{{ url('/change-password') }}",
                     data : {
                         _token : "{{ csrf_token() }}",
                         new_password : $('#txt_new_pass').val(),
-                        cnf_new_password : $('#xt_cnf_new_pass').val(),
+                        cnf_new_password : $('#txt_cnf_new_pass').val(),
                     },
                     success: function(response) {
                         if (response.isMatched == true) {
                             $('#currentPasswordBlock').hide();
+                            $('#txt_current_pass').val("");
                             $('#newPasswordBlock').hide();
+                            $('#txt_new_pass').val("");
+                            $('#txt_cnf_new_pass').val("");
                             $('#btn_update_pass').prop('disabled',false);
                             swal('success','Password successfully changed!', 'success');
                         } else {
@@ -223,26 +231,15 @@
         });
     </script>
 
-{{-- 
-    <script>
-        $(document).ready(function () {
-            $('#btn_change_pass').click(function () {
-                $('#currentPasswordBlock').hide();
-                $('#newPasswordBlock').hide();
-                $('#btn_update_pass').prop('disabled',false);
-            });
-        });
-    </script>
 
- --}}
     <script>
         $(document).ready(function () {
             $("#cancel1,#cancel2").click(function () {
                 $('#currentPasswordBlock').hide();
-                $('#txt_current_pass').val('');
+                $('#txt_current_pass').val("");
                 $('#newPasswordBlock').hide();
-                $('#txt_new_pass').val('');
-                $('#txt_cnf_new_pass').val('');
+                $('#txt_new_pass').val("");
+                $('#txt_cnf_new_pass').val("");
                 $('#btn_update_pass').prop('disabled',false);
             });
         });

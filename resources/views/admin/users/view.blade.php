@@ -10,14 +10,16 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">
-                            View User Details
+                            <b>
+                                View User Details
+                            </b>
                         </h1>
                         <ol class="breadcrumb">
                             <li>
                                  <a href="{{ route('admin.get.dashboard') }}"><i class="fa fa-dashboard"></i> Dashboard</a>
                             </li>
                             <li>
-                                 <a href="{{ route('admin.get.allUsers') }}"><i class="fa fa-table"></i> User Management</a>
+                                 <a href="{{ route('admin.get.allUsers') }}"><i class="fa fa-users"></i> User Management</a>
 
                             </li>
                             <li class="active">

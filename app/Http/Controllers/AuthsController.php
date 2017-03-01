@@ -104,32 +104,39 @@ class AuthsController extends Controller
 
     public function changePassword(Request $request)
     {
-        if ( $request->new_password == $request->cnf_new_password ) {
-            $user = Auth::user();
+        if ( $request->new_password != "" || $request->cnf_new_password != "" ) {
+            if ( $request->new_password == $request->cnf_new_password ) {
+                $user = Auth::user();
 
-            if ($user) {
-                /** Request a new data using the requst data */
-                $user->password = \Hash::make($request->new_password);
-               // $user->password = bcrypt($request->new_password);
-                if ($user->save()) {
-                    return response()->json(['isMatched' => true]);
+                if ($user) {
+                    /** Request a new data using the requst data */
+                    $user->password = \Hash::make($request->new_password);
+                   // $user->password = bcrypt($request->new_password);
+                    if ($user->save()) {
+                        return response()->json(['isMatched' => true]);
+                    } else {
+                        return response()->json([
+                            'isMatched' => false, 
+                            'error' => "Some error occured"
+                        ]);
+                    }
                 } else {
                     return response()->json([
-                        'isMatched' => false, 
-                        'error' => "Some error occured"
+                        'isMatched' => false,
+                        'error' => "No record"
                     ]);
                 }
             } else {
                 return response()->json([
-                    'isMatched' => false,
-                    'error' => "No record"
+                    'isMatched' => false, 
+                    'error' => "Password did not match!"
                 ]);
             }
         } else {
             return response()->json([
-                'isMatched' => false, 
-                'error' => "Password did not match!"
-            ]);
+                    'isMatched' => false, 
+                    'error' => "Password cannot be empty!"
+                ]);
         }
     }
 }

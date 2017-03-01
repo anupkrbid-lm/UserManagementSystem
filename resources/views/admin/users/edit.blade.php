@@ -10,14 +10,16 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">
-                            Update User Details
+                            <b>
+                                Update User Details
+                            </b>
                         </h1>
                         <ol class="breadcrumb">
                             <li>
                                  <a href="{{ url('/admin/dashboard') }}"><i class="fa fa-dashboard"></i> Dashboard</a>
                             </li>
                             <li>
-                                 <a href="{{ url('/admin/manage/users') }}"><i class="fa fa-table"></i> User Management</a>
+                                 <a href="{{ url('/admin/manage/users') }}"><i class="fa fa-users"></i> User Management</a>
 
                             </li>
                             <li class="active">
