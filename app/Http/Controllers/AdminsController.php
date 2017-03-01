@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\Title_CMS;
 use Auth;
 
 class AdminsController extends Controller
@@ -136,8 +137,15 @@ class AdminsController extends Controller
     /**  CMS Management  */
     public function welcomeTitle()
     {
-        return view('admin.cms.welcome_title');
+        $title_cms = Title_CMS::find(1);
+        return view('admin.cms.welcome_title',[ 'title_cms' => $title_cms ]);
     }
+
+    public function welcomeTitleUpdate($id)
+    {
+        // To be continued.. See the error in the browser while updating
+    }
+
     public function portfolio()
     {
         return view('admin.cms.portfolio');

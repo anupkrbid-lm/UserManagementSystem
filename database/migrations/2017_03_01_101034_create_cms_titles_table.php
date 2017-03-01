@@ -28,6 +28,6 @@ class CreateCmsTitlesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('Title_CMS');
+        Schema::dropIfExists('title_cms');
     }
 }

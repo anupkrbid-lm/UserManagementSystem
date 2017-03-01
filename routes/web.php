@@ -104,6 +104,14 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
                 'uses' => 'AdminsController@welcomeTitle',
                 'as' => 'admin.get.welcomeTitle'
             ]);
+            Route::put('/welcome-title/update/{id}', [
+                'uses' => 'AdminsController@welcomeTitleUpdate',
+                'as' => 'admin.put.welcomeTitleUpdate'
+            ]);
+            Route::patch('/welcome-title/update/{id}', [
+                'uses' => 'AdminsController@welcomeTitleUpdate',
+                'as' => 'admin.patch.welcomeTitleUpdate'
+            ]);
             Route::get('/portfolio', [
                 'uses' => 'AdminsController@portfolio',
                 'as' => 'admin.get.portfolio'
