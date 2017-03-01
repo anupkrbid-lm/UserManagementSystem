@@ -30,7 +30,7 @@
             <br /><hr />
             <div class="row">
                 <div class="col-lg-12">         
-                    <div class="table-responsive" style="text-align:center;"> 
+                    <div class="table-responsive"> 
                         {{-- <h2><i class="fa fa-table"></i> List of All Users </h2> --}}
                         <table class="table table-bordered table-centered table-hover table-striped">
                             <thead>
@@ -59,12 +59,12 @@
                                         <td>{{ $user->profile_picture }}</td>
                                         <td class="text-center">
                                             <a href="{{ route('admin.get.viewUser', ['id' => $user->id]) }}" style="float: left; margin-right: 10px;">
-                                                <button type="button" class="btn btn-md btn-info">
+                                                <button type="button" class="btn btn-md btn-info" {{ ($user->id == $adminUser->id) ? 'disabled="disabled"' : null }}>
                                                     <i class="fa fa-info"></i> View
                                                 </button>
                                             </a>
                                             <a href="{{ route('admin.get.editUser', ['id' => $user->id]) }}"  style="float: left; margin-right: 10px;">
-                                                <button type="button" class="btn btn-md btn-warning">
+                                                <button type="button" class="btn btn-md btn-warning" {{ ($user->id == $adminUser->id) ? 'disabled="disabled"' : null }}>
                                                     <i class="fa fa-edit"></i> Update
                                                 </button>
                                             </a>

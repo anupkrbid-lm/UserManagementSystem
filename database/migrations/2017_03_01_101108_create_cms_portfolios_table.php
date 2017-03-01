@@ -13,7 +13,7 @@ class CreateCmsPortfoliosTable extends Migration
      */
     public function up()
     {
-        Schema::create('Portfolio_CMS', function (Blueprint $table) {
+        Schema::create('portfolio_cms', function (Blueprint $table) {
             $table->increments('id');
             $table->string('project_title');
             $table->string('description');

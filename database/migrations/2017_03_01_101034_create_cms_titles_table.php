@@ -13,7 +13,7 @@ class CreateCmsTitlesTable extends Migration
      */
     public function up()
     {
-        Schema::create('Title_CMS', function (Blueprint $table) {
+        Schema::create('title_cms', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title');
             $table->string('sub_title');

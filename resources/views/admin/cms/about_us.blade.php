@@ -15,7 +15,7 @@
                 <i class="fa fa-list-ul"></i> CMS Management
             </li>
             <li class="active">
-                <i class="fa fa-hashtag"></i> About-Us
+                <i class="fa fa-hashtag"></i> About Us
             </li>
         </ol>
     </div>

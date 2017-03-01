@@ -13,7 +13,7 @@ class CreateCmsAboutUsTable extends Migration
      */
     public function up()
     {
-        Schema::create('AboutUs_CMS', function (Blueprint $table) {
+        Schema::create('aboutus_cms', function (Blueprint $table) {
             $table->increments('id');
             $table->string('left_block');
             $table->string('right_block');

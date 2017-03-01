@@ -123,7 +123,7 @@
                 <li>
                     <form method='post' action="{{ route('app.logout') }}">
                         {{ csrf_field() }}
-                        <button type="submit" style="margin-left: 20px;">
+                        <button type="submit" style="margin-left: 20px;background-color: #2c3e50;border: 0px;color: #fff;">
                             <i class="fa fa-power-off">
                             </i>
                              Log Out
