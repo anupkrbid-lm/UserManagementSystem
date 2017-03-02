@@ -17,6 +17,9 @@
     <!-- Custom CSS -->
     <link href="/css/sb-admin.css" rel="stylesheet">
 
+    <!-- CK Text Editor CDN -->
+    <script src="https://cdn.ckeditor.com/4.6.2/standard/ckeditor.js"></script>
+    
     <!-- Sweet Alert 2-->
     <link href="https://cdn.jsdelivr.net/sweetalert2/6.4.2/sweetalert2.min.css" rel="stylesheet">
 

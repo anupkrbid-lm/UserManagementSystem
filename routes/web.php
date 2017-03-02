@@ -17,9 +17,10 @@ Route::get('/', function () {
 
 */
 
-Route::get('/', function () {
-    return view('home');
-})->name('home');
+Route::get('/',[
+    'uses' => 'HomesController@home',
+    'as' => 'home'
+]);
 
 Route::get('/getstarted','AuthsController@index');
 
@@ -120,6 +121,14 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
                 'uses' => 'AdminsController@aboutUs',
                 'as' => 'admin.get.aboutUs'
             ]);
+            Route::put('/about-us/update/{id}', [
+                'uses' => 'AdminsController@aboutUsUpdate',
+                'as' => 'admin.put.aboutUsUpdate'
+            ]);
+            Route::patch('/about-us/update/{id}', [
+                'uses' => 'AdminsController@aboutUsUpdate',
+                'as' => 'admin.patch.aboutUsUpdate'
+            ]);            
         });
     });
 });

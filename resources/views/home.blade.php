@@ -104,11 +104,11 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-4 col-lg-offset-2">
-                    <p style="text-align: justify;" >Tier5 is an American IT company specializing in web design, web development and digital marketing. Headquartered in Indiana, we combine diverse skill sets throughout our network of qualified developers. Our client's projects are developed under a strict, process-oriented methodology with a single point of contact for our clients. This approach allows us to improve constantly, while delivering quality products at freelancer rates.</p>
+                <div class="col-lg-4 col-lg-offset-2" style="text-align: justify">
+                    <p>Tier5 is an American IT company specializing in web design, web development and digital marketing. Headquartered in Indiana, we combine diverse skill sets throughout our network of qualified developers. Our client's projects are developed under a strict, process-oriented methodology with a single point of contact for our clients. This approach allows us to improve constantly, while delivering quality products at freelancer rates.</p>
                 </div>
-                <div class="col-lg-4">
-                    <p style="text-align: justify;">Our vision is to optimize the pairing of web and mobile development skills from around the world with clients who need custom work, while keeping it simple for the client with a single point of contact. Inspired by this vision, the Tier5 model radically improves efficiency over the models used by conventional web and app development firms, allowing us to pass cost savings on to our clients while keeping our web and app developer's salaries competitive.</p>
+                <div class="col-lg-4" style="text-align: justify;">
+                    <p>Our vision is to optimize the pairing of web and mobile development skills from around the world with clients who need custom work, while keeping it simple for the client with a single point of contact. Inspired by this vision, the Tier5 model radically improves efficiency over the models used by conventional web and app development firms, allowing us to pass cost savings on to our clients while keeping our web and app developer's salaries competitive.</p>
                 </div>
     <!--    Download Theme Button
                 <div class="col-lg-8 col-lg-offset-2 text-center">
@@ -126,7 +126,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <h2>Contact Me</h2>
+                    <h2>Contact Us</h2>
                     <hr class="star-primary">
                 </div>
             </div>

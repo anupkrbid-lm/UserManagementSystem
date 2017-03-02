@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Title_CMS;
+use App\AboutUs_CMS;
 use Auth;
 
 class AdminsController extends Controller
@@ -137,21 +138,64 @@ class AdminsController extends Controller
     /**  CMS Management  */
     public function welcomeTitle()
     {
-        $title_cms = Title_CMS::find(1);
-        return view('admin.cms.welcome_title',[ 'title_cms' => $title_cms ]);
+        if ($title_cms = Title_CMS::find(1)) {
+            return view('admin.cms.welcome_title',[ 'title_cms' => $title_cms ]);
+        } else {
+            return redirect()->back()->with('error', "Something went wrong, please try again later!");
+        }
     }
 
-    public function welcomeTitleUpdate($id)
+    public function welcomeTitleUpdate(Request $request)
     {
-        // To be continued.. See the error in the browser while updating
+        $title_cms = Title_CMS::find(1);
+        if($title_cms) {
+            /** Request a new data using the requst data */
+            $title_cms->title = $request->title;
+            $title_cms->sub_title = $request->sub_title;
+            /** Save if to the database */
+            if ($title_cms->save()) {
+            /** Redirect back to add user page */
+            return redirect()->back()->with('success', "Successfully updated welcome title!");
+            } else {
+                return redirect()->back()->with('error', "Something went wrong, please try again later!");
+            }
+        } else {
+            return redirect()->back()->with('error', "Something went wrong, please try again later!");
+        }
+
     }
 
     public function portfolio()
     {
         return view('admin.cms.portfolio');
     }
+
     public function aboutUs()
     {
-        return view('admin.cms.about_us');
+        if ($aboutus_cms = AboutUs_CMS::find(1)) {
+            return view('admin.cms.about_us',[ 'aboutus_cms' => $aboutus_cms ]);
+        } else {
+            return redirect()->back()->with('error', "Something went wrong, please try again later!");
+        }
     }
+
+    public function aboutUsUpdate(Request $request)
+    {
+        $aboutus_cms = AboutUs_CMS::find(1);
+        if($aboutus_cms) {
+            /** Request a new data using the requst data */
+            $aboutus_cms->left_block = $request->left_block;
+            $aboutus_cms->right_block = $request->right_block;
+            /** Save if to the database */
+            if ($aboutus_cms->save()) {
+            /** Redirect back to add user page */
+            return redirect()->back()->with('success', "Successfully updated about us details!");
+            } else {
+                return redirect()->back()->with('success', "Something went wrong, please try again later!");
+            }
+        } else {
+            return redirect()->back()->with('error', "Something went wrong, please try again later!");
+        }
+
+    } 
 }

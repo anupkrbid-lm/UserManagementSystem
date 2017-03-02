@@ -16,8 +16,8 @@ class CreateCmsPortfoliosTable extends Migration
         Schema::create('portfolio_cms', function (Blueprint $table) {
             $table->increments('id');
             $table->string('project_title');
-            $table->string('description');
-            $table->string('project_details');
+            $table->text('description');
+            $table->text('project_details');
             $table->string('tags');
             $table->string('project_link');
             $table->string('client');

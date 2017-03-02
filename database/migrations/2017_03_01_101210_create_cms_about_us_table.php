@@ -15,8 +15,8 @@ class CreateCmsAboutUsTable extends Migration
     {
         Schema::create('aboutus_cms', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('left_block');
-            $table->string('right_block');
+            $table->text('left_block');
+            $table->text('right_block');
             $table->timestamps();
         });
     }
