@@ -20,7 +20,7 @@
                          <a href="{{ route('admin.get.allUsers') }}"><i class="fa fa-users"></i> User Management</a>
                     </li>
                     <li class="active">
-                        <i class="fa fa-edit">
+                        <i class="fa fa-user-plus">
                         </i> 
                         Add New User
                     </li>
@@ -38,14 +38,14 @@
                         <label>
                             First Name
                         </label>
-                        <input class="form-control" placeholder="Enter Text" type="text" name="first_name"  required autocomplete="off"/>
+                        <input class="form-control" placeholder="Enter First Name" type="text" name="first_name"  required autocomplete="off"/>
                     </div>
 
                     <div class="form-group">
                         <label>
                             Last Name
                         </label>
-                        <input class="form-control" placeholder="Enter Text" type="text" name="last_name"  required autocomplete="off"/>
+                        <input class="form-control" placeholder="Enter Last Name" type="text" name="last_name"  required autocomplete="off"/>
                     </div>
 
                     <div class="form-group">
@@ -91,7 +91,7 @@
                         <label>
                             Confirm Password
                         </label>
-                        <input class="form-control" placeholder="Enter Password" type="password" name="cnf_password"  required autocomplete="off"/>
+                        <input class="form-control" placeholder="Enter Password Again" type="password" name="cnf_password"  required autocomplete="off"/>
                     </div>
 
 <!--                        <div class="form-group">

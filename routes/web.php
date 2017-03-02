@@ -117,6 +117,22 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
                 'uses' => 'AdminsController@portfolio',
                 'as' => 'admin.get.portfolio'
             ]);
+            Route::get('/portfolio/add', [
+                'uses' => 'AdminsController@portfolioAdd',
+                'as' => 'admin.get.portfolioAdd'
+            ]);
+            Route::post('/portfolio/create', [
+                'uses' => 'AdminsController@portfolioCreate',
+                'as' => 'admin.post.portfolioCreate'
+            ]);            
+/*            Route::put('/portfolio/update', [
+                'uses' => 'AdminsController@portfolio',
+                'as' => 'admin.put.portfolio'
+            ]);
+            Route::patch('/portfolio', [
+                'uses' => 'AdminsController@portfolio',
+                'as' => 'admin.patch.portfolio'
+            ]);*/
             Route::get('/about-us', [
                 'uses' => 'AdminsController@aboutUs',
                 'as' => 'admin.get.aboutUs'

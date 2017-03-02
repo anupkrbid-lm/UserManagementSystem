@@ -15,14 +15,13 @@ class CreateCmsPortfoliosTable extends Migration
     {
         Schema::create('portfolio_cms', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('image');
             $table->string('project_title');
             $table->text('description');
             $table->text('project_details');
+            $table->string('client');
             $table->string('tags');
             $table->string('project_link');
-            $table->string('client');
-            $table->string('image');
-            $table->string('img_path');
             $table->timestamps();
         });
     }

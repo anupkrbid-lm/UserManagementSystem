@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Title_CMS;
 use App\AboutUs_CMS;
+use App\Portfolio_CMS;
 use Auth;
 
 class AdminsController extends Controller
@@ -69,7 +70,7 @@ class AdminsController extends Controller
                     /** Redirect back to add user page */
                     return redirect()->back()->with('success', "Successfully added a new user!");
                 } else {
-                    return redirect()->back()->with('success', "Something went wrong, please try again later!");
+                    return redirect()->back()->with('error', "Something went wrong, please try again later!");
                 }
             } else {
                 return redirect()->back()->with('error', "Password and confirm password should be matched!");
@@ -77,7 +78,8 @@ class AdminsController extends Controller
         }
     }
 
-    public function viewUser($id) {
+    public function viewUser($id) 
+    {
         $user = User::find($id);
 
         if ($user) {
@@ -162,12 +164,41 @@ class AdminsController extends Controller
         } else {
             return redirect()->back()->with('error', "Something went wrong, please try again later!");
         }
-
     }
 
     public function portfolio()
     {
         return view('admin.cms.portfolio');
+    }
+
+    public function portfolioAdd()
+    {
+        return view('admin.cms.portfolio_add');
+    }
+
+    public function portfolioCreate(Request $request)
+    {
+        $portfolio_cms = new Portfolio_CMS();
+        if($request) {
+            /** Request a new data using the requst data */
+            $portfolio_cms->image = $request->file('portfolio')->store('portfolio_images');
+            $portfolio_cms->project_title = $request->project_title;
+            $portfolio_cms->description = $request->description;
+            $portfolio_cms->project_details = $request->project_details;
+            $portfolio_cms->client = $request->client;
+            $portfolio_cms->tags = $request->tags;
+            $portfolio_cms->project_link = $request->project_link;
+
+            /** Save if to the database */
+            if($portfolio_cms->save()) {
+                /** Redirect to the homepage */
+                return redirect()->back()->with('success','New portfolio added!'); 
+            } else {
+                return redirect()->back()->with('error', "Something went wrong, please try again later!");
+            }        
+        } else {
+            return redirect()->back()->with('error', "Something went wrong, please try again later!");
+        }
     }
 
     public function aboutUs()
@@ -196,6 +227,6 @@ class AdminsController extends Controller
         } else {
             return redirect()->back()->with('error', "Something went wrong, please try again later!");
         }
-
     } 
+
 }
