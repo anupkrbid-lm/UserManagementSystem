@@ -26,8 +26,6 @@ class AuthsController extends Controller
      */
     public function register(Request $request)
     {
-       
-        //dd(request()->all());
         $users=User::where('email', '=', $request->email)->first();
         if ($users)
         {

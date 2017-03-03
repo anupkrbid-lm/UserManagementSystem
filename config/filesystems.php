@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'default' => 'local',
+    'default' => 'custom',
 
     /*
     |--------------------------------------------------------------------------
@@ -51,6 +51,18 @@ return [
         'public' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),
+            'url' => env('APP_URL').'/storage',
+            'visibility' => 'public',
+        ],
+
+        'custom' => [
+            'driver' => 'local',
+            'root' => public_path('storage'),
+        ],
+
+        'public' => [
+            'driver' => 'local',
+            'root' => public_path('/public'),
             'url' => env('APP_URL').'/storage',
             'visibility' => 'public',
         ],

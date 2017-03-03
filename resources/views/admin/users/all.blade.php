@@ -56,7 +56,7 @@
                                         <td>{{ $user->sex == 1 ? "Male" : ($user->sex == 2 ? "Female" : "Other") }}</td>
                                         <td>{{ $user->is_admin == 1 ? "Admin" : "User" }}</td>
                                         <td>{{ $user->email }}</td>
-                                        <td>{{ $user->profile_picture }}</td>
+                                        <td><img src="{{ Storage::disk('custom')->url('portfolio_images/xwOT1JFkobrdvidICPCBW6k2oSgmyRrP0Mw4sQN8.png') }}" style="height: 75px;width: 100px;"></td>
                                         <td class="text-center">
                                             <a href="{{ route('admin.get.viewUser', ['id' => $user->id]) }}" style="float: left; margin-right: 10px;">
                                                 <button type="button" class="btn btn-md btn-info" {{ ($user->id == $adminUser->id) ? 'disabled="disabled"' : null }}>
