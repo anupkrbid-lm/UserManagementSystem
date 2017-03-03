@@ -33,7 +33,7 @@
                         </a>
                     </li>
                     <li class="active">
-                        <i class="fa fa-hashtag"></i> Add New Portfolio
+                        <i class="fa fa-hashtag"></i> View Portfolio
                     </li>
                 </ol>
             </div>
@@ -42,32 +42,24 @@
 
         <div class="row">
             <div class="col-lg-8">
-
-                <form role="form" method='post' action="{{ route('admin.post.portfolioCreate') }}" enctype="multipart/form-data" >
-                    {{ csrf_field() }}
-                     <div class="form-group">
-                        <label>
-                        Upload Image 
-                        </label>
-                        <input id="file-input" type="file" name="portfolio">
-                        <div id="thumb-output"></div>
-                    </div>
-
+                <fieldset disabled>
                     <div class="form-group">
+                        <img src="{{ Storage::disk('custom')->url($portfolio_cms->image) }}" style="height: 75px;width: 100px;">
                     </div>
 
                     <div class="form-group">
                         <label>
                             Project Title
                         </label>
-                        <input class="form-control" placeholder="Enter Project Title" type="text" name="project_title"  required autocomplete="off"/>
+                        <input class="form-control" placeholder="Enter Project Title" type="text" name="project_title" value="{{ $portfolio_cms->project_title }}" required autocomplete="off"/>
                     </div>
 
                     <div class="form-group">
                         <label>
                             Description
                         </label>
-                        <textarea id="description" class="form-control" placeholder="Enter Description" type="text" name="description" required autocomplete="off">    
+                        <textarea id="description" class="form-control" placeholder="Enter Description" type="text" name="description" required autocomplete="off">
+                            {{ $portfolio_cms->description }}    
                         </textarea>
                     </div>
 
@@ -76,6 +68,7 @@
                             Project Details
                         </label>
                         <textarea id="project_details" class="form-control" placeholder="Enter Project Details" type="text" name="project_details" required autocomplete="off">
+                            {{ $portfolio_cms->project_details }}
                         </textarea>
                     </div>                    
 
@@ -83,44 +76,39 @@
                         <label>
                             Tags
                         </label>
-                        <input class="form-control" placeholder="Enter Tags" type="text" name="tags" required autocomplete="off"/>
+                        <input class="form-control" placeholder="Enter Tags" type="text" name="tags" value="{{ $portfolio_cms->tags }}" required autocomplete="off"/>
                     </div>
 
                     <div class="form-group">
                         <label>
                             Project Link
                         </label>
-                        <input class="form-control" placeholder="Enter Project Link" type="text" name="project_link" required autocomplete="off"/>
+                        <input class="form-control" placeholder="Enter Project Link" type="text" name="project_link" value="{{ $portfolio_cms->project_link }}" required autocomplete="off"/>
                     </div>
 
                     <div class="form-group">
                         <label>
                             Client
                         </label>
-                        <input class="form-control" placeholder="Enter Client's Name" type="text" name="client" required autocomplete="off"/>
+                        <input class="form-control" placeholder="Enter Client's Name" type="text" name="client" value="{{ $portfolio_cms->client }}" required  autocomplete="off"/>
                     </div>                    
-
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-primary">
-                            Add Portfolio
+                </fieldset>
+                <div class="form-group">
+                    <a href="{{ route('admin.get.portfolioEdit', ['id' => $portfolio_cms->id]) }}">
+                        <button type="button" class="btn btn-primary">
+                            Update Portfolio
                         </button>
-                        <button type="reset" class="btn btn-warning">
-                            Reset Changes
+                    </a>
+                    <a href="{{ route('admin.get.portfolio') }}" >
+                        <button type="button" class="btn btn-danger">
+                            Cancel
                         </button>
-                        <a href="{{ route('admin.get.portfolio') }}" >
-                            <button type="button" class="btn btn-danger">
-                                Cancel
-                            </button>
-                        </a>
-                    </div>
-                </form>
-
+                    </a>
+                </div>
             </div>
-
-    
+        </div>
     </div>
 </div>
-
 @endsection
 
 

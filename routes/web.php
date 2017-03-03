@@ -124,15 +124,27 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
             Route::post('/portfolio/create', [
                 'uses' => 'AdminsController@portfolioCreate',
                 'as' => 'admin.post.portfolioCreate'
-            ]);            
-/*            Route::put('/portfolio/update', [
-                'uses' => 'AdminsController@portfolio',
+            ]);  
+            Route::get('/portfolio/edit/{id}', [
+                'uses' => 'AdminsController@portfolioEdit',
+                'as' => 'admin.get.portfolioEdit'
+            ]);          
+            Route::put('/portfolio/update/{id}', [
+                'uses' => 'AdminsController@portfolioUpdate',
                 'as' => 'admin.put.portfolio'
             ]);
-            Route::patch('/portfolio', [
-                'uses' => 'AdminsController@portfolio',
-                'as' => 'admin.patch.portfolio'
-            ]);*/
+            Route::patch('/portfolio/update/{id}', [
+                'uses' => 'AdminsController@portfolioUpdate',
+                'as' => 'admin.patch.portfolioUpdate'
+            ]);
+            Route::get('/portfolio/view/{id}', [
+                'uses' => 'AdminsController@portfolioView',
+                'as' => 'admin.get.portfolioView'
+            ]); 
+            Route::delete('/portfolio/delete/{id}', [
+                'uses' => 'AdminsController@portfolioDelete',
+                'as' => 'admin.delete.portfolioDelete'
+            ]); 
             Route::get('/about-us', [
                 'uses' => 'AdminsController@aboutUs',
                 'as' => 'admin.get.aboutUs'

@@ -28,9 +28,9 @@
                 <i class="fa fa-plus-circle"></i> Add New Portfolio
             </button>
         </a>
-        <br /><hr />
+        <br/><hr />
 
-        <!-- Anonymous Visitor's Table -->
+        <!-- Portfolio Listing Table -->
         <div class="row">
             <div class="col-lg-12">
                 <div class="panel panel-default">
@@ -53,7 +53,7 @@
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
-                                <tbody style="height:208px; overflow:auto;">
+                                <tbody>
                                     @foreach($portfolio_cms as $portfolioCMS)
                                         <tr>
                                             <td>{{ ++$loop->index }}</td>
@@ -62,29 +62,29 @@
                                             <td>{{ $portfolioCMS->project_title }}</td>
                                             <td>{{ $portfolioCMS->client }}</td>
                                             <td>{{ $portfolioCMS->tags }}</td>
-                                            <td> <a href=" {{ $portfolioCMS->project_link }}" target="_blank" style="color: #2c3e50">Visit Link</a></td>
+                                            <td><a href=" {{ $portfolioCMS->project_link }}" target="_blank" style="color: #2c3e50">Visit Link</a></td>
                                             <td>
-                                                <a href="#">
-                                                    <button type="button" class="btn btn-md btn-info">
+                                                <a href="{{ route('admin.get.portfolioView', ['id' => $portfolioCMS->id]) }}">
+                                                    <button type="button" class="btn btn-md btn-info" style="float: left; margin-right: 5px;">
                                                         <i class="fa fa-info">
                                                         </i>
                                                          View
                                                     </button>
                                                 </a>                                        
-                                                <a href="#">
-                                                    <button type="button" class="btn btn-md btn-warning">
+                                                <a href="{{ route('admin.get.portfolioEdit', ['id' => $portfolioCMS->id]) }}">
+                                                    <button type="button" class="btn btn-md btn-warning" style="float: left; margin-right: 5px;">
                                                         <i class="fa fa-pencil">
                                                         </i>
                                                          Update
                                                     </button>
                                                 </a>
-                                                <a href="#">
-                                                    <button type="button" class="btn btn-md btn-danger">
-                                                        <i class="fa fa-trash">
-                                                        </i>
-                                                         Delete
+                                                <form method='post' action="{{ route('admin.delete.portfolioDelete', ['id' => $portfolioCMS->id]) }}"  style="float: left; margin-right: 5px;">
+                                                    {{ csrf_field() }}
+                                                    {{ method_field('delete') }}
+                                                    <button type="submit" class="btn btn-md btn-danger">
+                                                        <i class="fa fa-trash"></i> Delete
                                                     </button>
-                                                </a>                                        
+                                                </form>
                                             </td>
                                         </tr>
                                     @endforeach

@@ -9,6 +9,12 @@ use App\AboutUs_CMS;
 use App\Portfolio_CMS;
 use Auth;
 
+/**
+ * Creates a new user and persistes into database.
+ *
+ * @param \Illuminate\Http\Request $request
+ * @return \Illumintae\Http\Response
+ */
 class AdminsController extends Controller
 {
     /**  Admin Pannel Operations  */
@@ -41,12 +47,6 @@ class AdminsController extends Controller
         return view('admin.users.add');
     }
 
-    /**
-     * Creates a new user and persistes into database.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illumintae\Http\Response
-     */
     public function createUser(Request $request)
     {
         $user = User::where('email', '=', $request->email)->first();
@@ -202,6 +202,68 @@ class AdminsController extends Controller
         }
     }
 
+    public function portfolioEdit($id)
+    {
+        $portfolio_cms = Portfolio_CMS::find($id);
+        
+        if ($portfolio_cms) {
+            return view('admin.cms.portfolio_edit', ['portfolio_cms' => $portfolio_cms]);
+        } else {
+            return redirect()->back()->with('error', "Sorry this portfolio doen't exist!");
+        }
+    }
+
+    public function portfolioUpdate(Request $request,$id)
+    {
+        $portfolio_cms = Portfolio_CMS::find($id);
+        
+        if ($portfolio_cms) {
+            /** Request a new data using the requst data */
+            $portfolio_cms->image = $request->file('portfolio')->store('portfolio_images');
+            $portfolio_cms->project_title = $request->project_title;
+            $portfolio_cms->description = $request->description;
+            $portfolio_cms->project_details = $request->project_details;
+            $portfolio_cms->client = $request->client;
+            $portfolio_cms->tags = $request->tags;
+            $portfolio_cms->project_link = $request->project_link;
+
+            /** Save if to the database */
+            if ($portfolio_cms->save()) {
+                return redirect()->back()->with('success', "Successfully updated portfolio details!");
+            } else {
+                return redirect()->back()->with('error', "Something went wrong, please try again later!");
+            }
+        } else {
+            return redirect()->back()->with('error', "Sorry this portfolio doen't exist!");
+        }
+    }
+
+    public function portfolioView($id)
+    {
+        $portfolio_cms = Portfolio_CMS::find($id);
+
+        if ($portfolio_cms) {
+            return view('admin.cms.portfolio_view', ['portfolio_cms' => $portfolio_cms]);
+        } else {
+            return redirect()->back()->with('error', "Sorry this porfolio doesn't exist!");
+        }
+    }
+
+    public function portfolioDelete($id)
+    {
+        $portfolio_cms = Portfolio_CMS::find($id);
+
+        if ($portfolio_cms) {
+            if ($portfolio_cms->delete()) {
+                return redirect()->back()->with('success', "Portfolio successfully deleted!");
+            } else {
+                return redirect()->back()->with('error', "Something went wrong, please try again later!");
+            }
+        } else {
+            return redirect()->back()->with('error', "Sorry this portfolio doen't exist!");
+        }
+    }
+
     public function aboutUs()
     {
         if ($aboutus_cms = AboutUs_CMS::find(1)) {
@@ -220,7 +282,7 @@ class AdminsController extends Controller
             $aboutus_cms->right_block = $request->right_block;
             /** Save if to the database */
             if ($aboutus_cms->save()) {
-            /** Redirect back to add user page */
+            /** Redirect back to add anout cms page */
             return redirect()->back()->with('success', "Successfully updated about us details!");
             } else {
                 return redirect()->back()->with('success', "Something went wrong, please try again later!");
