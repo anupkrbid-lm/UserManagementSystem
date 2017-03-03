@@ -11,6 +11,7 @@
 
     <title>Admin - User Management System ~ Development</title>
 
+    @yield('links')
     <!-- Bootstrap Core CSS -->
     <link href="/css/bootstrap.min.css" rel="stylesheet">
 

@@ -1,5 +1,16 @@
 @extends('layouts.admin')
 
+@section('links')
+
+<style>
+.thumb{
+    margin: 10px 5px 0 0;
+    width: 100px;
+}
+</style>
+
+@endsection
+
 @section('content')
 
 <div id="page-wrapper">
@@ -34,11 +45,15 @@
 
                 <form role="form" method='post' action="{{ route('admin.post.portfolioCreate') }}" enctype="multipart/form-data" >
                     {{ csrf_field() }}
-                    <div class="form-group">
+                     <div class="form-group">
                         <label>
                         Upload Image 
                         </label>
-                        <input type="file" name="portfolio">
+                        <input id="file-input" type="file" name="portfolio">
+                        <div id="thumb-output"></div>
+                    </div>
+
+                    <div class="form-group">
                     </div>
 
                     <div class="form-group">
@@ -116,5 +131,32 @@
     CKEDITOR.replace('project_details');
     CKEDITOR.config.height = 120;
 </script>
-
+/** Image Preview before upload*/
+<script>
+$(document).ready(function(){
+    $('#file-input').on('change', function(){ //on file input change
+        if (window.File && window.FileReader && window.FileList && window.Blob) //check File API supported browser
+        {
+            $('#thumb-output').html(''); //clear html of output element
+            var data = $(this)[0].files; //this file data
+            
+            $.each(data, function(index, file){ //loop though each file
+                if(/(\.|\/)(gif|jpe?g|png)$/i.test(file.type)){ //check supported file type
+                    var fRead = new FileReader(); //new filereader
+                    fRead.onload = (function(file){ //trigger function on successful read
+                    return function(e) {
+                        var img = $('<img/>').addClass('thumb').attr('src', e.target.result); //create image element 
+                        $('#thumb-output').append(img); //append image to output element
+                    };
+                    })(file);
+                    fRead.readAsDataURL(file); //URL representing the file's data.
+                }
+            });
+            
+        }else{
+            alert("Your browser doesn't support File API!"); //if File API is absent
+        }
+    });
+});
+</script>
 @endsection
