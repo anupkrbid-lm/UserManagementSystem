@@ -58,17 +58,17 @@
                                         <td>{{ $user->email }}</td>
                                         <td><img src="{{ Storage::disk('custom')->url('portfolio_images/xwOT1JFkobrdvidICPCBW6k2oSgmyRrP0Mw4sQN8.png') }}" style="height: 75px;width: 100px;"></td>
                                         <td class="text-center">
-                                            <a href="{{ route('admin.get.viewUser', ['id' => $user->id]) }}" style="float: left; margin-right: 10px;">
+                                            <a href="{{ route('admin.get.viewUser', ['id' => $user->id]) }}" style="float: left; margin-right: 5px;">
                                                 <button type="button" class="btn btn-md btn-info" {{ ($user->id == $adminUser->id) ? 'disabled="disabled"' : null }}>
                                                     <i class="fa fa-info"></i> View
                                                 </button>
                                             </a>
-                                            <a href="{{ route('admin.get.editUser', ['id' => $user->id]) }}"  style="float: left; margin-right: 10px;">
+                                            <a href="{{ route('admin.get.editUser', ['id' => $user->id]) }}"  style="float: left; margin-right: 5px;">
                                                 <button type="button" class="btn btn-md btn-warning" {{ ($user->id == $adminUser->id) ? 'disabled="disabled"' : null }}>
                                                     <i class="fa fa-edit"></i> Update
                                                 </button>
                                             </a>
-                                            <form method='post' action="{{ route('admin.delete.deleteUser', ['id' => $user->id]) }}"  style="float: left; margin-right: 10px;">
+                                            <form method='post' action="{{ route('admin.delete.deleteUser', ['id' => $user->id]) }}"  style="float: left; margin-right: 5px;">
                                                 {{ csrf_field() }}
                                                 {{ method_field('delete') }}
                                                 <button type="submit" class="btn btn-md btn-danger" {{ (($user->id == $adminUser->id) || ($user->is_admin == 1 )) ? 'disabled="disabled"' : null }}>

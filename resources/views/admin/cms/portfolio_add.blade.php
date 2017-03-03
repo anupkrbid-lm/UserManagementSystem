@@ -131,7 +131,8 @@
     CKEDITOR.replace('project_details');
     CKEDITOR.config.height = 120;
 </script>
-/** Image Preview before upload*/
+
+/** Image Preview before upload */
 <script>
 $(document).ready(function(){
     $('#file-input').on('change', function(){ //on file input change

@@ -168,7 +168,8 @@ class AdminsController extends Controller
 
     public function portfolio()
     {
-        return view('admin.cms.portfolio');
+        $portfolio_cms = Portfolio_CMS::all();
+        return view('admin.cms.portfolio',['portfolio_cms' => $portfolio_cms]);
     }
 
     public function portfolioAdd()
