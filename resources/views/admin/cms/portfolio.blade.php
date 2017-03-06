@@ -45,6 +45,7 @@
                                     <tr>
                                         <th>#</th>
                                         <th>Select</th>
+                                        <th>Order</th>
                                         <th>Image</th>
                                         <th>Title</th>
                                         <th>Clients</th>
@@ -57,7 +58,18 @@
                                     @foreach($portfolio_cms as $portfolioCMS)
                                         <tr>
                                             <td>{{ ++$loop->index }}</td>
-                                            <td><input type="checkbox" name="" value=""/></td>
+                                            <td><input class="single-checkbox" type="checkbox" name="order" data-id="<?php echo $portfolioCMS->id;?>"></td>
+                                            <td>    
+                                               <select class="drop-down" disabled id="select_<?php echo $portfolioCMS->id;?>">
+                                                    <option value="NULL"></option>        
+                                                    <option value="1">1</option>
+                                                    <option value="2">2</option>
+                                                    <option value="3">3</option>
+{{--                                                     <option value="4">4</option>
+                                                    <option value="5">5</option>
+                                                    <option value="6">6</option> --}}
+                                               </select>
+                                            </td>
                                             <td><img src="{{ Storage::disk('custom')->url($portfolioCMS->image) }}" style="height: 75px;width: 100px;"></td>
                                             <td>{{ $portfolioCMS->project_title }}</td>
                                             <td>{{ $portfolioCMS->client }}</td>
@@ -98,9 +110,70 @@
                 <!-- /.panel -->
             </div>
         </div>
-
     </div>
 </div>
 
+@endsection
+
+@section('scripts')
+
+<script>
+
+$(document).ready(function() {
+    var limit = 3;
+    $('input.single-checkbox').on('change', function(evt) {
+        var data_id=$(this).data('id');
+        if ($(this).parent().parent().siblings().children().children('input.single-checkbox:checked').length >= limit) {
+        this.checked = false;
+        alert("Cannot select more than 3 portfolios");
+        } else {
+            if($(this).prop("checked") == true){
+               $('#select_'+data_id).prop('disabled',false);
+            } else if ($(this). prop("checked") == false) {
+               $('#select_'+data_id).prop('disabled',true);
+               $('#select_'+data_id).val("");
+            }
+        }
+    });
+});
+
+</script>
+{{--
+<script>
+$(document).ready(function (){
+    $("select").change(function()
+       {          
+            $("select option").attr("disabled","");
+            DisableOptions();           
+        });
+
+    function DisableOptions()
+    {
+        $("select option").filter(function() {
+            var bSuccess=false;
+            var selectedEl=$(this);
+            $("select option:selected").each(function() {
+                if($(this).val()==selectedEl.val())
+                {
+                   bSuccess=true;
+                   return false;
+                }
+            });
+            return bSuccess;
+        }).attr("disabled","disabled");                     
+    }
+});            
+</script> --}}
+
+{{-- <script>
+
+$(document).ready(function(){  
+    $("select").change(function() {   
+        $("select").not(this).find("option[value="+ $(this).val() + "]").attr('disabled', true);
+    }); 
+}); 
+
+</script>
+ --}}
 
 @endsection

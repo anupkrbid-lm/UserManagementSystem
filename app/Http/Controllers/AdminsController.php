@@ -260,7 +260,7 @@ class AdminsController extends Controller
                 return redirect()->back()->with('error', "Something went wrong, please try again later!");
             }
         } else {
-            return redirect()->back()->with('error', "Sorry this portfolio doen't exist!");
+            return redirect()->back()->with('error', "Sorry this portfolio doesn't exist!");
         }
     }
 
