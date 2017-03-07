@@ -60,8 +60,8 @@
                                             <td>{{ ++$loop->index }}</td>
                                             <td><input class="single-checkbox" type="checkbox" name="order" data-id="<?php echo $portfolioCMS->id;?>"></td>
                                             <td>    
-                                               <select class="drop-down" disabled id="select_<?php echo $portfolioCMS->id;?>">
-                                                    <option value="NULL"></option>        
+                                               <select class="drop" disabled id="select_<?php echo $portfolioCMS->id;?>">
+                                                    <option value="0"></option>        
                                                     <option value="1">1</option>
                                                     <option value="2">2</option>
                                                     <option value="3">3</option>
@@ -115,8 +115,9 @@
 
 @endsection
 
-@section('scripts')
 
+@section('scripts')
+ 
 <script>
 
 $(document).ready(function() {
@@ -124,56 +125,40 @@ $(document).ready(function() {
     $('input.single-checkbox').on('change', function(evt) {
         var data_id=$(this).data('id');
         if ($(this).parent().parent().siblings().children().children('input.single-checkbox:checked').length >= limit) {
-        this.checked = false;
-        alert("Cannot select more than 3 portfolios");
-        } else {
-            if($(this).prop("checked") == true){
-               $('#select_'+data_id).prop('disabled',false);
-            } else if ($(this). prop("checked") == false) {
-               $('#select_'+data_id).prop('disabled',true);
-               $('#select_'+data_id).val("");
+            this.checked = false;
+            alert("Cannot select more than 3 portfolios");
+            } else {
+                if($(this).prop("checked") == true){
+                   $('#select_'+data_id).prop('disabled',false);
+                }
+                 else if ($(this). prop("checked") == false) {
+
+                   $('#select_'+data_id).prop('disabled',true);
+                    $('#select_'+data_id).val("0");
+                    $(".drop").eq(0).trigger('change');
+                }
             }
-        }
     });
 });
 
 </script>
-{{--
-<script>
-$(document).ready(function (){
-    $("select").change(function()
-       {          
-            $("select option").attr("disabled","");
-            DisableOptions();           
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $(".drop").change(function() {
+        var selVal = [];
+        $(".drop").each(function() {
+            selVal.push(this.value);
+        });
+        $(this).parent("td").parent("tr").siblings("tr").children("td").children("select").find("option").removeAttr("disabled").filter(function() {
+            var a = $(this).parent("select").val();
+            return (($.inArray(this.value, selVal) > -1) && (this.value != a))
+          }).attr("disabled", "disabled");
         });
 
-    function DisableOptions()
-    {
-        $("select option").filter(function() {
-            var bSuccess=false;
-            var selectedEl=$(this);
-            $("select option:selected").each(function() {
-                if($(this).val()==selectedEl.val())
-                {
-                   bSuccess=true;
-                   return false;
-                }
-            });
-            return bSuccess;
-        }).attr("disabled","disabled");                     
-    }
-});            
-</script> --}}
-
-{{-- <script>
-
-$(document).ready(function(){  
-    $("select").change(function() {   
-        $("select").not(this).find("option[value="+ $(this).val() + "]").attr('disabled', true);
-    }); 
-}); 
+        $(".drop").eq(0).trigger('change');
+    });
 
 </script>
- --}}
 
 @endsection
