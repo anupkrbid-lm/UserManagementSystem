@@ -7,6 +7,7 @@ use App\User;
 use App\Title_CMS;
 use App\AboutUs_CMS;
 use App\Portfolio_CMS;
+use App\PortfolioPublish;
 use Auth;
 
 /**
@@ -174,26 +175,52 @@ class AdminsController extends Controller
 
     public function portfolioPublish(Request $request)
     {
-        $portfolio_cms = Portfolio_CMS::find($request->id);
-
-        if ($portfolio_cms) {
-            /** Request a new data using the requst data */
-            $portfolio_cms->position = $request->position;
-            if ($portfolio_cms->save()) {
-                return response()->json(['isMatched' => true]);
-            } else {
-                return response()->json([
-                    'isMatched' => false, 
-                    'error' => "Some error occured"
-                ]);
-            }
+        $portfolio_publish=PortfolioPublish::all();
+        if($portfolio_publish) {
+            PortfolioPublish::truncate();
+        }
+        $portfolio_publish = new PortfolioPublish();
+        foreach ($request->map as $id => $pos)
+        /** Request a new data using the requst data */
+        $portfolio_publish->p_id = $id;
+        $portfolio_publish->p_pos = $pos;
+        if ($portfolio_publish->save()) {
+            return response()->json(['isMatched' => true]);
         } else {
             return response()->json([
-                'isMatched' => false,
-                'error' => "No record"
+                'isMatched' => false, 
+                'error' => "Some error occured"
             ]);
         }
-    }
+    
+
+        // $portfolio=Portfolio_CMS::all();
+        // foreach($portfolio as $portfolio_del){
+        //     $portfolio_del->position=null;
+        //     $portfolio_del->save();
+        // }
+        // Portfolio_CMS::all()->update('position', NULL);
+
+        // $portfolio_cms = Portfolio_CMS::find($request->id);
+
+        // if ($portfolio_cms) {
+        //     /** Request a new data using the requst data */
+        //     $portfolio_cms->position = $request->position;
+        //     if ($portfolio_cms->save()) {
+        //         return response()->json(['isMatched' => true]);
+        //     } else {
+        //         return response()->json([
+        //             'isMatched' => false, 
+        //             'error' => "Some error occured"
+        //         ]);
+        //     }
+        // } else {
+        //     return response()->json([
+        //         'isMatched' => false,
+        //         'error' => "No record"
+        //     ]);
+        // }
+    }   
 
     public function portfolioAdd()
     {

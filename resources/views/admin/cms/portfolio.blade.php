@@ -170,30 +170,30 @@ $(document).ready(function() {
     $(document).ready(function () {
         $('#portfolio_publish').click(function(){ 
             var MyRows = $('table').find('tbody').find('tr');
+            var map = {};
             for (var i = 0; i < MyRows.length; i++) {
                 if ( $(MyRows[i]).find('td:eq(1)').children().is(':checked') ) {
                     var id = $(MyRows[i]).find('td:eq(1)').children().data('id');
                     var pos = $(MyRows[i]).find('td:eq(2)').children().val();
-
-                    $.ajax({
-                        type : "patch",
-                        url : "{{ url('/admin/manage/cms/portfolio/publish/') }}",
-                        data : {
-                            _token : "{{ csrf_token() }}",
-                            id : id,
-                            position : pos,
-                        },
-                        success: function(response) {
-                            if (response.isMatched == true) {
-                                swal('success','Portfolio published successfully!', 'success');
-                            } else {
-                                swal('error', response.error, 'error');
-                            }
-                        }
-                    });
-
+                    
+                    map.push({id:id,pos:pos});
                 }
             }
+            $.ajax({
+                type : "patch",
+                url : "{{ url('/admin/manage/cms/portfolio/publish/') }}",
+                data : {
+                    _token : "{{ csrf_token() }}",
+                    map : map,
+                },
+                success: function(response) {
+                    if (response.isMatched == true) {
+                        swal('success','Portfolio published successfully!', 'success');
+                    } else {
+                        swal('error', response.error, 'error');
+                    }
+                }
+            });
         });
     });
 </script>
