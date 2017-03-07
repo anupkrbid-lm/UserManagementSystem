@@ -23,11 +23,16 @@
             </div>
         </div>
         <!-- /.row -->
+    {{--     <input type="hidden=" name="mapping[]"> --}}
+        <button id="portfolio_publish" type="button" class="btn btn-md btn-primary pull-left">
+             Publish Portfolio
+        </button>
         <a href="{{ route('admin.get.portfolioAdd') }}">
             <button type="button" class="btn btn-md btn-success pull-right">
                 <i class="fa fa-plus-circle"></i> Add New Portfolio
             </button>
         </a>
+      {{--   </form> --}}
         <br/><hr />
 
         <!-- Portfolio Listing Table -->
@@ -60,21 +65,21 @@
                                             <td>{{ ++$loop->index }}</td>
                                             <td><input class="single-checkbox" type="checkbox" name="order" data-id="<?php echo $portfolioCMS->id;?>"></td>
                                             <td>    
-                                               <select class="drop" disabled id="select_<?php echo $portfolioCMS->id;?>">
+                                               <select class="drop" name="positionArray[]" disabled id="select_<?php echo $portfolioCMS->id;?>">
                                                     <option value="0"></option>        
                                                     <option value="1">1</option>
                                                     <option value="2">2</option>
                                                     <option value="3">3</option>
-{{--                                                     <option value="4">4</option>
+                                                    <option value="4">4</option>
                                                     <option value="5">5</option>
-                                                    <option value="6">6</option> --}}
+                                                    <option value="6">6</option>
                                                </select>
                                             </td>
                                             <td><img src="{{ Storage::disk('custom')->url($portfolioCMS->image) }}" style="height: 75px;width: 100px;"></td>
                                             <td>{{ $portfolioCMS->project_title }}</td>
                                             <td>{{ $portfolioCMS->client }}</td>
                                             <td>{{ $portfolioCMS->tags }}</td>
-                                            <td><a href=" {{ $portfolioCMS->project_link }}" target="_blank" style="color: #2c3e50">Visit Link</a></td>
+                                            <td><a href="//{{ $portfolioCMS->project_link }}" target="_blank" style="color: #2c3e50">Visit Link</a></td>
                                             <td>
                                                 <a href="{{ route('admin.get.portfolioView', ['id' => $portfolioCMS->id]) }}">
                                                     <button type="button" class="btn btn-md btn-info" style="float: left; margin-right: 5px;">
@@ -121,12 +126,12 @@
 <script>
 
 $(document).ready(function() {
-    var limit = 3;
+    var limit = 6;
     $('input.single-checkbox').on('change', function(evt) {
         var data_id=$(this).data('id');
         if ($(this).parent().parent().siblings().children().children('input.single-checkbox:checked').length >= limit) {
             this.checked = false;
-            alert("Cannot select more than 3 portfolios");
+            alert("Cannot select more than 6 portfolios");
             } else {
                 if($(this).prop("checked") == true){
                    $('#select_'+data_id).prop('disabled',false);
@@ -159,6 +164,38 @@ $(document).ready(function() {
         $(".drop").eq(0).trigger('change');
     });
 
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#portfolio_publish').click(function(){ 
+            var MyRows = $('table').find('tbody').find('tr');
+            for (var i = 0; i < MyRows.length; i++) {
+                if ( $(MyRows[i]).find('td:eq(1)').children().is(':checked') ) {
+                    var id = $(MyRows[i]).find('td:eq(1)').children().data('id');
+                    var pos = $(MyRows[i]).find('td:eq(2)').children().val();
+
+                    $.ajax({
+                        type : "patch",
+                        url : "{{ url('/admin/manage/cms/portfolio/publish/') }}",
+                        data : {
+                            _token : "{{ csrf_token() }}",
+                            id : id,
+                            position : pos,
+                        },
+                        success: function(response) {
+                            if (response.isMatched == true) {
+                                swal('success','Portfolio published successfully!', 'success');
+                            } else {
+                                swal('error', response.error, 'error');
+                            }
+                        }
+                    });
+
+                }
+            }
+        });
+    });
 </script>
 
 @endsection

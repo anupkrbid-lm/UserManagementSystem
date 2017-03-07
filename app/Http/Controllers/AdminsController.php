@@ -172,6 +172,29 @@ class AdminsController extends Controller
         return view('admin.cms.portfolio',['portfolio_cms' => $portfolio_cms]);
     }
 
+    public function portfolioPublish(Request $request)
+    {
+        $portfolio_cms = Portfolio_CMS::find($request->id);
+
+        if ($portfolio_cms) {
+            /** Request a new data using the requst data */
+            $portfolio_cms->position = $request->position;
+            if ($portfolio_cms->save()) {
+                return response()->json(['isMatched' => true]);
+            } else {
+                return response()->json([
+                    'isMatched' => false, 
+                    'error' => "Some error occured"
+                ]);
+            }
+        } else {
+            return response()->json([
+                'isMatched' => false,
+                'error' => "No record"
+            ]);
+        }
+    }
+
     public function portfolioAdd()
     {
         return view('admin.cms.portfolio_add');
@@ -188,7 +211,7 @@ class AdminsController extends Controller
             $portfolio_cms->project_details = $request->project_details;
             $portfolio_cms->client = $request->client;
             $portfolio_cms->tags = $request->tags;
-            $portfolio_cms->project_link = $request->project_link;
+            $portfolio_cms->project_link = preg_replace('/(http:\/\/)|(https:\/\/)/', null, $request->project_link);
 
             /** Save if to the database */
             if($portfolio_cms->save()) {

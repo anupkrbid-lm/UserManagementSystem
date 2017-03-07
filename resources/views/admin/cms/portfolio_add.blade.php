@@ -49,7 +49,7 @@
                         <label>
                         Upload Image 
                         </label>
-                        <input id="file-input" type="file" name="portfolio">
+                        <input id="file-input" type="file" name="portfolio" required="">
                         <div id="thumb-output"></div>
                     </div>
 

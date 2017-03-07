@@ -117,6 +117,14 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
                 'uses' => 'AdminsController@portfolio',
                 'as' => 'admin.get.portfolio'
             ]);
+            Route::put('/portfolio/publish', [
+                'uses' => 'AdminsController@portfolioPublish',
+                'as' => 'admin.put.portfolioPublish'
+            ]);
+            Route::patch('/portfolio/publish', [
+                'uses' => 'AdminsController@portfolioPublish',
+                'as' => 'admin.patch.portfolioPublish'
+            ]);
             Route::get('/portfolio/add', [
                 'uses' => 'AdminsController@portfolioAdd',
                 'as' => 'admin.get.portfolioAdd'
@@ -173,8 +181,4 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth'], function () {
 
 Route::get('/test', function () {
     return view('user.index');
-});
-
-Route::get('/testing', function () {
-    return view('user.profile');
 });
