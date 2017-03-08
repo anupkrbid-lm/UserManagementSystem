@@ -169,22 +169,26 @@ $(document).ready(function() {
 <script type="text/javascript">
     $(document).ready(function () {
         $('#portfolio_publish').click(function(){ 
-            var MyRows = $('table').find('tbody').find('tr');
-            var map = {};
-            for (var i = 0; i < MyRows.length; i++) {
-                if ( $(MyRows[i]).find('td:eq(1)').children().is(':checked') ) {
-                    var id = $(MyRows[i]).find('td:eq(1)').children().data('id');
-                    var pos = $(MyRows[i]).find('td:eq(2)').children().val();
-                    
-                    map.push({id:id,pos:pos});
+            var SelectedRows = $('table').find('tbody').find('tr');
+            var jsonMap = [];
+            for (var i = 0; i < SelectedRows.length; i++) {
+                if ( $(SelectedRows[i]).find('td:eq(1)').children().is(':checked') ) {
+                    var id = $(SelectedRows[i]).find('td:eq(1)').children().data('id');
+                    var pos = $(SelectedRows[i]).find('td:eq(2)').children().val();
+                    jsonMap.push({
+                        "id": id,
+                        "pos": pos
+                    });
                 }
             }
+            // console.log(jsonMap);
+            // return false;
             $.ajax({
                 type : "patch",
                 url : "{{ url('/admin/manage/cms/portfolio/publish/') }}",
                 data : {
                     _token : "{{ csrf_token() }}",
-                    map : map,
+                    map : jsonMap
                 },
                 success: function(response) {
                     if (response.isMatched == true) {
