@@ -63,9 +63,9 @@
                                     @foreach($portfolio_cms as $portfolioCMS)
                                         <tr>
                                             <td>{{ ++$loop->index }}</td>
-                                            <td><input class="single-checkbox" type="checkbox" name="order" data-id="<?php echo $portfolioCMS->id;?>"></td>
+                                            <td><input class="single-checkbox" type="checkbox" name="order" data-id="<?php echo $portfolioCMS->id;?>" ></td>
                                             <td>    
-                                               <select class="drop" name="positionArray[]" disabled id="select_<?php echo $portfolioCMS->id;?>">
+                                               <select class="drop" disabled id="select_<?php echo $portfolioCMS->id;?>">
                                                     <option value="0"></option>        
                                                     <option value="1">1</option>
                                                     <option value="2">2</option>

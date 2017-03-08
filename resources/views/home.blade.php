@@ -11,9 +11,9 @@
                 <div class="col-lg-12">
                     <img class="img-responsive" src="img/profile.png" alt="">
                     <div class="intro-text">
-                        <span class="name">User Management System</span>
+                        <span class="name">{{ $title_cms->title }}</span>
                         <hr class="star-light">
-                        <span class="skills">Stop Thinking - Start Doing</span>
+                        <span class="skills">{{ $title_cms->sub_title }}</span>
                     </div>
                 </div>
             </div>
@@ -29,7 +29,7 @@
                     <hr class="star-primary">
                 </div>
             </div>
-            <div class="row">
+        <div class="row">
                 <div class="col-sm-4 portfolio-item">
                     <a href="#portfolioModal1" class="portfolio-link" data-toggle="modal">
                         <div class="caption">
@@ -40,7 +40,7 @@
                         <img src="img/portfolio/cabin.png" class="img-responsive" alt="">
                     </a>
                 </div>
-                <div class="col-sm-4 portfolio-item">
+         {{--            <div class="col-sm-4 portfolio-item">
                     <a href="#portfolioModal2" class="portfolio-link" data-toggle="modal">
                         <div class="caption">
                             <div class="caption-content">
@@ -89,7 +89,7 @@
                         </div>
                         <img src="img/portfolio/submarine.png" class="img-responsive" alt="">
                     </a>
-                </div>
+                </div> --}}
             </div>
         </div>
     </section>
@@ -105,10 +105,10 @@
             </div>
             <div class="row">
                 <div class="col-lg-4 col-lg-offset-2" style="text-align: justify">
-                    <p>Tier5 is an American IT company specializing in web design, web development and digital marketing. Headquartered in Indiana, we combine diverse skill sets throughout our network of qualified developers. Our client's projects are developed under a strict, process-oriented methodology with a single point of contact for our clients. This approach allows us to improve constantly, while delivering quality products at freelancer rates.</p>
+                    {!! $aboutus_cms->left_block !!}
                 </div>
                 <div class="col-lg-4" style="text-align: justify;">
-                    <p>Our vision is to optimize the pairing of web and mobile development skills from around the world with clients who need custom work, while keeping it simple for the client with a single point of contact. Inspired by this vision, the Tier5 model radically improves efficiency over the models used by conventional web and app development firms, allowing us to pass cost savings on to our clients while keeping our web and app developer's salaries competitive.</p>
+                    {!! $aboutus_cms->right_block !!}
                 </div>
     <!--    Download Theme Button
                 <div class="col-lg-8 col-lg-offset-2 text-center">

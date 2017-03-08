@@ -170,7 +170,9 @@ class AdminsController extends Controller
     public function portfolio()
     {
         $portfolio_cms = Portfolio_CMS::all();
-        return view('admin.cms.portfolio',['portfolio_cms' => $portfolio_cms]);
+        $portfolio_publish = PortfolioPublish::all();
+        
+        return view('admin.cms.portfolio',['portfolio_cms' => $portfolio_cms, 'portfolio_publish' => $portfolio_publish]);
     }
 
     public function portfolioPublish(Request $request)
