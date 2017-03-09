@@ -169,12 +169,19 @@ class AdminsController extends Controller
 
     public function portfolio()
     {
-        $portfolio_cms = Portfolio_CMS::all();
-        // $portfolio_publish = PortfolioPublish::all();
         $portfolios = Portfolio_CMS::leftJoin('portfolio_publishes', function($join) {
                 $join->on('portfolio_cms.id', '=', 'portfolio_publishes.p_id');
-            })->get();
-       // dd($portfolios);
+            })->get([
+                'portfolio_cms.id',
+                'portfolio_cms.image',
+                'portfolio_cms.project_title',
+                'portfolio_cms.project_details',
+                'portfolio_cms.project_link',
+                'portfolio_cms.description',
+                'portfolio_cms.client',
+                'portfolio_cms.tags',
+                'portfolio_publishes.p_pos'
+            ]);
         return view('admin.cms.portfolio',['portfolio_cms' => $portfolios]);
     }
 
