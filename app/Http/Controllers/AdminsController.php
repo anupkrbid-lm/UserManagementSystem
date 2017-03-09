@@ -21,7 +21,38 @@ class AdminsController extends Controller
     /**  Admin Pannel Operations  */
     public function dashboard()
     {
-        return view('admin.dashboard');
+        // var guest_remote_ip = $_SERVER['REMOTE_ADDR'];
+        // var guest_visit_time = $_SERVER['REQUEST_TIME'];
+        // var guest_current_page = $_SERVER['HTTP_REFERER'];
+        // ,[ 'guest_remote_ip' => guest_remote_ip, 'guest_visit_time' => guest_visit_time, 'guest_current_page' => guest_current_page]
+
+        // get user details
+        $guest_remote_agent = $_SERVER['HTTP_USER_AGENT']; //user browser
+        $guest_remote_ip = $_SERVER["REMOTE_ADDR"];     // user ip adderss      // page the user looking
+        $guest_current_page = $_SERVER["HTTP_REFERER"]; 
+
+/*
+    // get location 
+        $url = json_decode(file_get_contents("http://api.ipinfodb.com/v3/ip-city/?key=/*userapikey/
+        // you can get your api key form http://ipinfodb.com/
+        ip=".$_SERVER['REMOTE_ADDR']."&format=json"));
+        $country=$url->countryName;  // user country
+        $city=$url->cityName;       // city
+        $region=$url->regionName;   // region
+        $latitude=$url->latitude;    //lat and lon
+        $longitude=$url->longitude;*/
+
+    // get time
+        date_default_timezone_set('UTC');
+        $guest_visit_date = date("Y-m-d");
+        $guest_visit_time = date("H:i:s");
+
+        return view('admin.dashboard',[
+            'guest_remote_ip' => $guest_remote_ip, 
+            'guest_visit_time' => $guest_visit_time, 
+            'guest_current_page' => $guest_current_page, 
+            'guest_remote_agent' => $guest_remote_agent
+        ]);
     }
 
     public function profile()

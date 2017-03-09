@@ -43,11 +43,11 @@
                         <tbody>
                                 <tr>
                                     <td></td>
+                                    <td>{{$guest_remote_ip}}</td>
                                     <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
+                                    <td>{{$guest_remote_agent}}</td>
+                                    <td>{{$guest_current_page}}</td>
+                                    <td>{{$guest_visit_time}}</td>                                 
                                     <td>
                                         <a href="#">
                                             <button type="button" class="btn btn-md btn-primary">
@@ -81,7 +81,7 @@
     <div class="col-lg-12">
         <div class="panel panel-default">
             <div class="panel-heading">
-                Active Visitors
+                Identified Visitors
             </div>
             <!-- /.panel-heading -->
             <div class="panel-body">

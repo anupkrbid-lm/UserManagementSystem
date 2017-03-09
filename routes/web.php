@@ -99,7 +99,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
                 'as' => 'admin.delete.deleteUser'
             ]);
         });
-        /** Manage CMS System */
+        /** Manage CMS Resources */
         Route::group(['prefix' => 'cms'], function () {
             Route::get('/welcome-title', [
                 'uses' => 'AdminsController@welcomeTitle',
