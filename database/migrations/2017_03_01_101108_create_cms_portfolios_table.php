@@ -15,8 +15,7 @@ class CreateCmsPortfoliosTable extends Migration
     {
         Schema::create('portfolio_cms', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('position')->nullable();
-            $table->string('image');
+            $table->string('image')->nullable();
             $table->string('project_title');
             $table->text('description');
             $table->text('project_details');

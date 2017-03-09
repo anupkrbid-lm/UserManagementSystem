@@ -170,9 +170,12 @@ class AdminsController extends Controller
     public function portfolio()
     {
         $portfolio_cms = Portfolio_CMS::all();
-        $portfolio_publish = PortfolioPublish::all();
-        
-        return view('admin.cms.portfolio',['portfolio_cms' => $portfolio_cms, 'portfolio_publish' => $portfolio_publish]);
+        // $portfolio_publish = PortfolioPublish::all();
+        $portfolios = Portfolio_CMS::leftJoin('portfolio_publishes', function($join) {
+                $join->on('portfolio_cms.id', '=', 'portfolio_publishes.p_id');
+            })->get();
+       // dd($portfolios);
+        return view('admin.cms.portfolio',['portfolio_cms' => $portfolios]);
     }
 
     public function portfolioPublish(Request $request)
@@ -244,7 +247,9 @@ class AdminsController extends Controller
         
         if ($portfolio_cms) {
             /** Request a new data using the requst data */
-            $portfolio_cms->image = $request->file('portfolio')->store('portfolio_images');
+            if ($request->file('portfolio')){
+                $portfolio_cms->image = $request->file('portfolio')->store('portfolio_images');
+            }   
             $portfolio_cms->project_title = $request->project_title;
             $portfolio_cms->description = $request->description;
             $portfolio_cms->project_details = $request->project_details;

@@ -16,10 +16,10 @@ class HomesController extends Controller
         $aboutus_cms = AboutUs_CMS::find(1);
         $portfolios = Portfolio_CMS::leftJoin('portfolio_publishes', function($join) {
                 $join->on('portfolio_cms.id', '=', 'portfolio_publishes.p_id');
-            })->get();
+            })->orderBy('p_pos')->get();
 
         if($title_cms && $aboutus_cms && $portfolios) {
-            return view('home',['title_cms' => $title_cms,'aboutus_cms' => $aboutus_cms,'portfolios' => $portfolios]);/*,['title_cms' => $title_cms]*/
+            return view('home',['title_cms' => $title_cms,'aboutus_cms' => $aboutus_cms,'portfolios' => $portfolios]);
         } else {
             return back()->with('error','Something went wrong, please try again later!');
         }
