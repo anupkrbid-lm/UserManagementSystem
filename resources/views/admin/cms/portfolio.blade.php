@@ -67,24 +67,24 @@
                                             </td>
                                             <td>    
                                                <select class="drop" {{ $portfolioCMS->p_pos ? null : 'disabled="disabled"' }} id="select_<?php echo $portfolioCMS->id;?>">
-                                                    <option value="0">
+                                                    <option value="0" {{ $portfolioCMS->p_pos==0 ? 'selected' : null }}>
                                                     </option>        
-                                                    <option value="1">
+                                                    <option value="1" {{ $portfolioCMS->p_pos==1 ? 'selected' : null }}>
                                                         1
                                                     </option>
-                                                    <option value="2">
+                                                    <option value="2" {{ $portfolioCMS->p_pos==2 ? 'selected' : null }}>
                                                         2
                                                     </option>
-                                                    <option value="3">
+                                                    <option value="3" {{ $portfolioCMS->p_pos==3 ? 'selected' : null }}>
                                                         3
                                                     </option>
-                                                    <option value="4">
+                                                    <option value="4" {{ $portfolioCMS->p_pos==4 ? 'selected' : null }}>
                                                         4
                                                     </option>
-                                                    <option value="5">
+                                                    <option value="5" {{ $portfolioCMS->p_pos==5 ? 'selected' : null }}>
                                                         5
                                                     </option>
-                                                    <option value="6">
+                                                    <option value="6" {{ $portfolioCMS->p_pos==6 ? 'selected' : null }}>
                                                         6
                                                     </option>
                                                </select>
