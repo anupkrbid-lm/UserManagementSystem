@@ -10,8 +10,9 @@ use App\PortfolioPublish;
 
 class HomesController extends Controller
 {
-    public function home()
+    public function home(Request $request)
     {
+        dd($request->session()->get('key'));
         $title_cms = Title_CMS::find(1);
         $aboutus_cms = AboutUs_CMS::find(1);
         $portfolios = Portfolio_CMS::leftJoin('portfolio_publishes', function($join) {
@@ -23,5 +24,11 @@ class HomesController extends Controller
         } else {
             return back()->with('error','Something went wrong, please try again later!');
         }
+    }
+
+    public function guests()
+    {
+
+
     }
 }

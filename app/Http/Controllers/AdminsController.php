@@ -20,7 +20,7 @@ class AdminsController extends Controller
 {
     /**  Admin Pannel Operations  */
     public function dashboard()
-    {
+    {      
         // var guest_remote_ip = $_SERVER['REMOTE_ADDR'];
         // var guest_visit_time = $_SERVER['REQUEST_TIME'];
         // var guest_current_page = $_SERVER['HTTP_REFERER'];
@@ -28,7 +28,8 @@ class AdminsController extends Controller
 
         // get user details
         $guest_remote_agent = $_SERVER['HTTP_USER_AGENT']; //user browser
-        $guest_remote_ip = $_SERVER["REMOTE_ADDR"];     // user ip adderss      // page the user looking
+        $guest_remote_ip = $_SERVER["REMOTE_ADDR"];     // user ip adderss
+        $guest_page_name = $_SERVER["SCRIPT_NAME"];      // page the user looking
         $guest_current_page = $_SERVER["HTTP_REFERER"]; 
 
 /*
