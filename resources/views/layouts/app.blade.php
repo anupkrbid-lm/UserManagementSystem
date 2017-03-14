@@ -92,6 +92,21 @@
         </script>
 
         <script>
+            $(document).ready(function () {
+                $.getJSON("http://jsonip.com/?callback=?", function (data) {
+                    console.log(data);
+                    alert(data.ip);
+                    var ums = getCookie("UserManagementSystem");
+                    if (ums != "") {
+                        alert("Welcome again " + ums);
+                    } else {
+                        ums = prompt("Please enter your name:", "");
+                        if (ums != "" && ums != null) {
+                            setCookie("UserManagementSystem", ums, 365);
+                        }
+                    }
+                });
+            });
 
             function setCookie(cname, cvalue, exdays) {
                 var d = new Date();
