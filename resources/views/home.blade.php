@@ -3,7 +3,6 @@
 
 @section('content')
 
-
 <!-- Header -->
     <header>
         <div class="container">

@@ -42,6 +42,7 @@
 
 
     <body id="page-top" class="index">
+    
         @include('includes.home.navigation_home')
         @yield('content')
 
@@ -81,7 +82,7 @@
                 swal('', "{{ session()->get('success') }}", 'success');
             @endif
         </script>
-
+<!--
         <script>
             $(document).ready(function () {
                 $.getJSON("http://jsonip.com/?callback=?", function (data) {
@@ -90,7 +91,7 @@
                 });
             });
         </script>
-
+--><!--
         <script>
             $(document).ready(function () {
                 $.getJSON("http://jsonip.com/?callback=?", function (data) {
@@ -100,37 +101,99 @@
                     if (ums != "") {
                         alert("Welcome again " + ums);
                     } else {
-                        ums = prompt("Please enter your name:", "");
-                        if (ums != "" && ums != null) {
-                            setCookie("UserManagementSystem", ums, 365);
+                        alert("Setting Cookie ");
+                        var chars = "abcdefghijklmnopqrstuvwxyz!@#$%^&*()-+<>ABCDEFGHIJKLMNOP1234567890";
+                        var pass = "";
+                        for (var x = 0; x < 26; x++) {
+                            var i = Math.floor(Math.random() * chars.length);
+                            pass += chars.charAt(i);
+                        }
+                        setCookie("UserManagementSystem", pass, 30);
                         }
                     }
+
+                     $(document).ready(function () {
+                $.getJSON("http://jsonip.com/?callback=?", function (data) {
+                    console.log(data);
+                    alert(data.ip);
+                    function setCookie(cname, cvalue, exdays) {
+                    var d = new Date();
+                    d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+                    var expires = "expires="+d.toUTCString();
+                    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+                    }
+
+                    function getCookie(cname) {
+                        var name = cname + "=";
+                        var ca = document.cookie.split(';');
+                        for(var i = 0; i < ca.length; i++) {
+                            var c = ca[i];
+                            while (c.charAt(0) == ' ') {
+                                c = c.substring(1);
+                            }
+                            if (c.indexOf(name) == 0) {
+                                return c.substring(name.length, c.length);
+                            }
+                        }
+                        return "";
+                    }
                 });
-            });
 
-            function setCookie(cname, cvalue, exdays) {
-                var d = new Date();
-                d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
-                var expires = "expires="+d.toUTCString();
-                document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
-            }
 
-            function getCookie(cname) {
-                var name = cname + "=";
-                var ca = document.cookie.split(';');
-                for(var i = 0; i < ca.length; i++) {
-                    var c = ca[i];
-                    while (c.charAt(0) == ' ') {
-                        c = c.substring(1);
-                    }
-                    if (c.indexOf(name) == 0) {
-                        return c.substring(name.length, c.length);
-                    }
-                }
-                return "";
             }
 
         </script>
+-->
+        <script>
+
+        $(document).ready(function () {
+            $.getJSON("http://jsonip.com/?callback=?", function (data) {
+                console.log(data);
+                alert(data.ip);
+                var user=getCookie("guest");
+                if (user != "") {
+                    alert(user);
+                } else {
+                    alert("Setting Cookie ");
+                    var chars = "abcdefghijklmnopqrstuvwxyz!@#$%^&*()-+<>ABCDEFGHIJKLMNOP1234567890";
+                    var user = "";
+                    for (var x = 0; x < 26; x++) {
+                        var i = Math.floor(Math.random() * chars.length);
+                        user += chars.charAt(i);
+                    }
+                   if (user != "" && user != null) {
+                       setCookie("guest", user, 30);
+                   }
+                }
+    
+                function setCookie(cname,cvalue,exdays) {
+                    var d = new Date();
+                    d.setTime(d.getTime() + (exdays*24*60*60*1000));
+                    var expires = "expires=" + d.toGMTString();
+                    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+                }
+
+                function getCookie(cname) {
+                    var name = cname + "=";
+                    var decodedCookie = decodeURIComponent(document.cookie);
+                    var ca = decodedCookie.split(';');
+                    for(var i = 0; i < ca.length; i++) {
+                        var c = ca[i];
+                        while (c.charAt(0) == ' ') {
+                            c = c.substring(1);
+                        }
+                        if (c.indexOf(name) == 0) {
+                            return c.substring(name.length, c.length);
+                        }
+                    }
+                    return "";
+                }
+            });
+        });
+
+        </script>
+
+
 
     </body>
 </html>

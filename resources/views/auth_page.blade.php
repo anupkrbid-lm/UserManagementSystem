@@ -151,7 +151,9 @@
             </form>
         </div>
     </div>
-    <!-- tab-content -->
+    <!-- tab-content --> 
 </div>
+
+    @include('includes.home.footer_home')
 
 @endsection('content')
