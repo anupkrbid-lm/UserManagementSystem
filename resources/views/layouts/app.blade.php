@@ -82,68 +82,7 @@
                 swal('', "{{ session()->get('success') }}", 'success');
             @endif
         </script>
-<!--
-        <script>
-            $(document).ready(function () {
-                $.getJSON("http://jsonip.com/?callback=?", function (data) {
-                    console.log(data);
-                    alert(data.ip);
-                });
-            });
-        </script>
---><!--
-        <script>
-            $(document).ready(function () {
-                $.getJSON("http://jsonip.com/?callback=?", function (data) {
-                    console.log(data);
-                    alert(data.ip);
-                    var ums = getCookie("UserManagementSystem");
-                    if (ums != "") {
-                        alert("Welcome again " + ums);
-                    } else {
-                        alert("Setting Cookie ");
-                        var chars = "abcdefghijklmnopqrstuvwxyz!@#$%^&*()-+<>ABCDEFGHIJKLMNOP1234567890";
-                        var pass = "";
-                        for (var x = 0; x < 26; x++) {
-                            var i = Math.floor(Math.random() * chars.length);
-                            pass += chars.charAt(i);
-                        }
-                        setCookie("UserManagementSystem", pass, 30);
-                        }
-                    }
 
-                     $(document).ready(function () {
-                $.getJSON("http://jsonip.com/?callback=?", function (data) {
-                    console.log(data);
-                    alert(data.ip);
-                    function setCookie(cname, cvalue, exdays) {
-                    var d = new Date();
-                    d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
-                    var expires = "expires="+d.toUTCString();
-                    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
-                    }
-
-                    function getCookie(cname) {
-                        var name = cname + "=";
-                        var ca = document.cookie.split(';');
-                        for(var i = 0; i < ca.length; i++) {
-                            var c = ca[i];
-                            while (c.charAt(0) == ' ') {
-                                c = c.substring(1);
-                            }
-                            if (c.indexOf(name) == 0) {
-                                return c.substring(name.length, c.length);
-                            }
-                        }
-                        return "";
-                    }
-                });
-
-
-            }
-
-        </script>
--->
         <script>
 
         $(document).ready(function () {
@@ -155,7 +94,7 @@
                     alert(user);
                 } else {
                     alert("Setting Cookie ");
-                    var chars = "abcdefghijklmnopqrstuvwxyz!@#$%^&*()-+<>ABCDEFGHIJKLMNOP1234567890";
+                    var chars = "abcdefghijklmnopqrstuvwxyz!@#$%^&*-<>ABCDEFGHIJKLMNOP1234567890";
                     var user = "";
                     for (var x = 0; x < 26; x++) {
                         var i = Math.floor(Math.random() * chars.length);
@@ -192,9 +131,7 @@
         });
 
         </script>
-
-
-
+        
     </body>
 </html>
 

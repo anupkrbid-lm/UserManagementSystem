@@ -15,6 +15,7 @@ class CreateGuestsTable extends Migration
     {
         Schema::create('guests', function (Blueprint $table) {
             $table->bigincrements('id');
+            $table->string('auth_hash');
             $table->ipAddress('ip_address');
             $table->string('city');
             $table->string('region');
@@ -25,14 +26,10 @@ class CreateGuestsTable extends Migration
             $table->string('continent_code');
             $table->float('latitide', 9, 4);
             $table->float('longitude', 9, 4);
-            $table->time('viewtime');
+        //    $table->time('viewtime');
             $table->date('date');
             $table->string('name')->nullable();
             $table->string('email')->nullable();
-            $table->string('auth_hash');
-            $table->boolean('is_blocked')->nullable();
-            $table->dateTime('blocked_at')->nullable();
-            $table->dateTime('unblock_at')->nullable();
             $table->timestamp('visited_at');
         });
     }
