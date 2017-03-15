@@ -16,12 +16,17 @@ class AppServiceProvider extends ServiceProvider
 
         // view()->composer('includes.home.footer_home', function ($view){
         //     $cookie = cookie('name', 'defaultCookie', '30');
-              $value = request()->cookie('guest');
-             dd($value);
-              // if($value){
-
-
-              // }
+            $value = request()->cookie('guest');
+            //dd($value);
+                if($value) {
+                    if (session()->has('id')) {
+                        
+                    } else {
+                        session(['id' => $value]);
+                        
+                        dd(session()->all());
+                    }
+                } 
     }
 
     
