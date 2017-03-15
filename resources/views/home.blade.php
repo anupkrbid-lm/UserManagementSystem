@@ -156,7 +156,7 @@
                                             </strong>
                                         </li>
                                         <li>Project Link:
-                                            <strong><a href="//{{ $portfolio->project_link }}">visit</a>
+                                            <strong><a target="_blank" href="//{{ $portfolio->project_link }}">visit</a>
                                             </strong>
                                         </li>
                                         <li>Technology:

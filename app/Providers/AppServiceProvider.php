@@ -24,11 +24,11 @@ class AppServiceProvider extends ServiceProvider
                     } else {
                         session(['id' => $value]);
                         
-                        dd(session()->all());
+                     //   dd($user_ip);
+                    //    dd(session()->all());
                     }
                 } 
     }
-
     
     /**
      * Register any application services.
