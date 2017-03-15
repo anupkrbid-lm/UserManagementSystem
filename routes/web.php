@@ -24,6 +24,10 @@ Route::get('/',[
 
 Route::get('/getstarted','AuthsController@index');
 
+// Route::get('/backend', function () {
+//     return view('backend');
+// });
+
 Route::post('/register', [
 	'uses' => 'AuthsController@register',
 	'as' => 'app.register'

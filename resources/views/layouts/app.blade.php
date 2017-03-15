@@ -88,10 +88,10 @@
         $(document).ready(function () {
             $.getJSON("http://jsonip.com/?callback=?", function (data) {
                 console.log(data);
-                alert(data.ip);
+            //    alert(data.ip);
                 var user=getCookie("guest");
                 if (user != "") {
-                    alert(user);
+            //        alert(user);
                 } else {
                     alert("Setting Cookie ");
                     var chars = "abcdefghijklmnopqrstuvwxyz!@#$%^&*-<>ABCDEFGHIJKLMNOP1234567890";

@@ -18,6 +18,7 @@ class AppServiceProvider extends ServiceProvider
         //     $cookie = cookie('name', 'defaultCookie', '30');
             $value = request()->cookie('guest');
             //dd($value);
+           
                 if($value) {
                     if (session()->has('id')) {
                         

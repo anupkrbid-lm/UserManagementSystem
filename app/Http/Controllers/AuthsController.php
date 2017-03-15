@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use App\User;
 use Auth;   
 
@@ -15,7 +14,12 @@ class AuthsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
+    {   
+        //dd(session()->all());
+        // if(session()->has('id')) {
+        //     session()->forget('id');
+        //    dd(session()->all());
+        
         return view('auth_page');
     }
 
