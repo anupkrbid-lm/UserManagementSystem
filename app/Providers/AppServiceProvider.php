@@ -18,16 +18,14 @@ class AppServiceProvider extends ServiceProvider
         //     $cookie = cookie('name', 'defaultCookie', '30');
             $value = request()->cookie('guest');
             //dd($value);
-           
                 if($value) {
-                    if (session()->has('id')) {
-                        
-                    } else {
-                        session(['id' => $value]);
-                        
-                     //   dd($user_ip);
+                    $request_uri = 'http://jsonip.com';
+                    $document = file_get_contents($request_uri);
+                    $details = json_decode($document);
+                    dd($details->ip);
+                    
                     //    dd(session()->all());
-                    }
+                    
                 } 
     }
     
