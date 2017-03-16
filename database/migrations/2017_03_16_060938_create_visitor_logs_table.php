@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateGuestsTable extends Migration
+class CreateVisitorLogsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class CreateGuestsTable extends Migration
      */
     public function up()
     {
-        Schema::create('guests', function (Blueprint $table) {
-            $table->increments('id');
+        Schema::create('visitor_logs', function (Blueprint $table) {
+            $table->bigIncrements('id');
             $table->string('cookie_id'); // cookie
             $table->ipAddress('ip_address'); // $details->query
             $table->string('region'); // $details->regionName
@@ -26,12 +26,14 @@ class CreateGuestsTable extends Migration
             $table->string('isp'); // $details->isp
             $table->float('latitide', 8, 4);  // $details->lat
             $table->float('longitude', 8, 4); // $details->lon
-            $table->string('path'); // request()->path()
             $table->string('ua_type');
             $table->string('ua_os');
             $table->string('ua_browser');
+            $table->date('date');
             $table->string('name')->nullable();
             $table->string('email')->nullable();
+            $table->timestamp('visited_at')->nullable();
+            $table->timestamp('left_at')->nullable();
             $table->timestamps();
         });
     }
@@ -43,6 +45,6 @@ class CreateGuestsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('guests');
+        Schema::dropIfExists('visitor_logs');
     }
 }
