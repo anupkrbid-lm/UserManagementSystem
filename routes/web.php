@@ -17,16 +17,19 @@ Route::get('/', function () {
 
 */
 
-Route::get('/',[
-    'uses' => 'HomesController@home',
-    'as' => 'home'
-]);
-
-Route::get('/getstarted','AuthsController@index');
+Route::group(['middleware' => 'check_session'], function () {
+    Route::get('/',[
+        'uses' => 'HomesController@home',
+        'as' => 'home'
+    ]);
+    Route::get('/getstarted','AuthsController@index');
+});
 
 // Route::get('/backend', function () {
 //     return view('backend');
 // });
+
+
 
 Route::post('/register', [
 	'uses' => 'AuthsController@register',

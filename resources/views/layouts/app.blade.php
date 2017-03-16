@@ -93,7 +93,7 @@
                 if (user != "") {
             //        alert(user);
                 } else {
-                    alert("Setting Cookie ");
+            //        alert("Setting Cookie ");
                     var chars = "abcdefghijklmnopqrstuvwxyz!@#$%^&*-<>ABCDEFGHIJKLMNOP1234567890";
                     var user = "";
                     for (var x = 0; x < 26; x++) {

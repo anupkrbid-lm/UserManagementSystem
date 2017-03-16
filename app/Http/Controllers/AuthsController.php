@@ -15,11 +15,6 @@ class AuthsController extends Controller
      */
     public function index()
     {   
-        //dd(session()->all());
-        // if(session()->has('id')) {
-        //     session()->forget('id');
-        //    dd(session()->all());
-        
         return view('auth_page');
     }
 
