@@ -17,7 +17,7 @@ Route::get('/', function () {
 
 */
 
-Route::group(['middleware' => 'check_session'], function () {
+Route::group(['middleware' => 'set_cookies'], function () {
     Route::get('/',[
         'uses' => 'HomesController@home',
         'as' => 'home'

@@ -15,7 +15,7 @@ class CreateGuestsTable extends Migration
     {
         Schema::create('guests', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('cookie_id'); // cookie
+            $table->text('cookie_id'); // cookie
             $table->ipAddress('ip_address'); // $details->query
             $table->string('region'); // $details->regionName
             $table->string('region_code'); // $details->region

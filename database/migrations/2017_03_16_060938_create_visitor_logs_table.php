@@ -15,7 +15,7 @@ class CreateVisitorLogsTable extends Migration
     {
         Schema::create('visitor_logs', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('cookie_id'); // cookie
+            $table->text('cookie_id'); // cookie
             $table->ipAddress('ip_address'); // $details->query
             $table->string('region'); // $details->regionName
             $table->string('region_code'); // $details->region
