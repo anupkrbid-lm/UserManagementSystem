@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use App\Guest;
 use Illuminate\Support\Facades\Session;
+
 class CheckSession
 {
     /**
@@ -16,6 +17,30 @@ class CheckSession
      */
     public function handle($request, Closure $next)
     {
+     //   dd(Session::all());
+       // dd(Session::get('_token'));
+     /*   if (Session::has('ums')) {
+
+            //dd(Session::get('ums'));
+
+        }  else if($request->hasCookie('ums')){
+            Session::put('ums', $request->cookie('ums'));
+           // dd(Session::all());
+           // dd('123');
+        }
+*/
+        if($request->hasCookie('ums')) {
+          //  dd($request->cookie('ums'));
+            return $next($request);
+        } else {
+
+            $ums_set_cookie = bcrypt('ums');
+            $response = $next($request);
+            return $response->withCookie(cookie()->forever('ums', Session::get('_token')));
+        }
+    }
+/*
+
         $value = request()->cookie('guest');
         dd($value);
         if($value) {                 
@@ -58,6 +83,18 @@ class CheckSession
                 }
             }  
         }      
-        return $next($request);
-    }
+        return $next($request);*/
+    
+
+    // public function terminate($request, $response) 
+    // {
+    //  if (!Session::has('ums')) {
+    //          Session::put('ums', $request->cookie('ums'));
+    //       //  $request->session()->put('ums', $request->cookie('ums'));
+    //           // dd(1234);
+    //         //dd($request->session()->all());
+    //         //dd($request->session()->get('ums'));
+    //         // user value cannot be found in session
+    //     }
+    
 }

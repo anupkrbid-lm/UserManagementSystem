@@ -7,13 +7,32 @@ use App\Title_CMS;
 use App\AboutUs_CMS;
 use App\Portfolio_CMS;
 use App\PortfolioPublish;
+use Session;
 
 class HomesController extends Controller
 {
+    public function __construct()
+    {
+        if (!Session::has('ums')){
+            Session::put('ums', request()->cookie('ums'));
+            dd(Session::get('ums'));
+        }
+
+        //dd(request()->cookie('ums'));
+        //dd(Session::get('ums'));
+    }
+
+
+    public function getStarted()
+    {   
+        return view('auth_page');
+    }
+
     public function home(Request $request)
     {
      //   dd(session()->has('c_id')); 
-       // dd(session()->get('c_id'));
+       // dd($request->session()->get('ums'));
+      //  dd(Session::get('ums'));
         $title_cms = Title_CMS::find(1);
         $aboutus_cms = AboutUs_CMS::find(1);
         $portfolios = Portfolio_CMS::leftJoin('portfolio_publishes', function($join) {
