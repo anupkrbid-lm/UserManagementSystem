@@ -3,7 +3,8 @@
 namespace App\Http\Middleware;
 
 use Closure;
-
+use App\Guest;
+use Illuminate\Support\Facades\Session;
 class CheckSession
 {
     /**
@@ -15,35 +16,25 @@ class CheckSession
      */
     public function handle($request, Closure $next)
     {
-        //dd(session()->has('c_id'));
-        // view()->composer('includes.home.footer_home', function ($view){
-        //     $cookie = cookie('name', 'defaultCookie', '30');
         $value = request()->cookie('guest');
-        //dd($value);
+        dd($value);
         if($value) {                 
         //    $request_uri = 'http://jsonip.com';
             $details_ip = json_decode(file_get_contents('http://ip-api.com/json'));
 
             $request_uri_ua='https://useragentapi.com/api/v4/json/23d50b97/'.urlencode($_SERVER['HTTP_USER_AGENT']);
             $details_ua = json_decode(file_get_contents($request_uri_ua));
-
             if ( session()->has('c_id')) {
                 $findGuest=Guest::where('cookie_id', '=', session('c_id'))->first();
                 if ($findGuest) {
-                //    dd($findGuest);
-                    $findGuest->path = request()->path(); 
-
+                    $findGuest->path = request()->path();
                     $findGuest->save(); 
                 }
                 
             } else {
                 Session::put('c_id', $value);
-                //session()->reflash('c_id', $value);
-                //dd(session()->has('c_id'));
-                //dd(session('c_id'));
+
                 if ($details_ip->status = "success") {
-                   // session(['ip' => $details_ip->query]);
-                    //session()->save();
 
                     $newGuest = new Guest();
 
@@ -65,8 +56,8 @@ class CheckSession
 
                     $newGuest->save(); 
                 }
-            } 
-            return $next($request);
+            }  
         }      
+        return $next($request);
     }
 }
