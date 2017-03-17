@@ -30,7 +30,7 @@
                     </div>
                     <div class="footer-col col-md-4">
                         <h3>About UMS</h3>
-                        <p>UMS is a free to use, test WebSite created by <a target="_blank" href="#">Tier5</a>.</p>
+                        <p>UMS is a free to use, test WebSite created by <a target="_blank" href="http://www.tier5.us">Tier5</a>.</p>
                     </div>
                 </div>
             </div>

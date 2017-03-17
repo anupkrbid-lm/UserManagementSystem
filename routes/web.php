@@ -22,7 +22,7 @@ Route::group(['middleware' => 'check_session'], function () {
         'uses' => 'HomesController@home',
         'as' => 'home'
     ]);
-    Route::get('/getstarted','HomesController@getStarted');
+    Route::get('/get-started','HomesController@getStarted');
 });
 
 // Route::get('/backend', function () {

@@ -26,7 +26,7 @@
                         <a href="#contact">Contact</a>
                     </li>
                     <li class="page-scroll">
-                        <a href="{{ url('/getstarted') }}">Get Started</a>
+                        <a href="{{ url('/get-started') }}">Get Started</a>
                     </li>
                 </ul>
             </div>

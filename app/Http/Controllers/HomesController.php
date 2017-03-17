@@ -15,7 +15,7 @@ class HomesController extends Controller
     {
         if (!Session::has('ums')){
             Session::put('ums', request()->cookie('ums'));
-            dd(Session::get('ums'));
+          //  dd(Session::get('ums'));
         }
 
         //dd(request()->cookie('ums'));
