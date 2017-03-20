@@ -33,21 +33,24 @@
                             <tr>
                                 <th>#</th>
                                 <th>IP</th>
-                                <th>Location</th>
+                                <th>Country/City</th>
                                 <th>Browser</th>
+                                <th>Device/OS</th>
                                 <th>Page</th>
-                                <th>Time</th>
+                                <th>Date Time</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach( $guests as $guest )
                                 <tr>
-                                    <td></td>
-                                    <td>{{$guest_remote_ip}}</td>
-                                    <td></td>
-                                    <td>{{$guest_remote_agent}}</td>
-                                    <td>{{$guest_current_page}}</td>
-                                    <td>{{$guest_visit_time}}</td>                                 
+                                    <td>{{ ++$loop->index }}</td>
+                                    <td>{{ $guest->ip_address }}</td>
+                                    <td>{{ $guest->country.", ".$guest->city }}</td>
+                                    <td>{{ $guest->ua_browser }}</td>
+                                    <td>{{ $guest->ua_type.", ".$guest->ua_os }}</td>
+                                    <td>{{ $guest->path }}</td>
+                                    <td>{{ $guest->created_at }}</td>                                 
                                     <td>
                                         <a href="#">
                                             <button type="button" class="btn btn-md btn-primary">
@@ -65,6 +68,7 @@
                                         </a>                                        
                                     </td>
                                 </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

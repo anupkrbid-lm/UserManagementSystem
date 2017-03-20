@@ -18,10 +18,7 @@ class SetCookies
 
     public function handle($request, Closure $next)
     {  
-       // dd(Session::has("ROCPoa6qolo6v2sONWyZZtFXl4wGZLu2WSIyN5p8"));
         if($request->hasCookie('ums_token')) {
-        //   echo request()->cookie('ums_token');
-            dd(Session::get('ums_session'));
             if(Session::has('ums_session')) {
                 $findGuest=Guest::where('cookie_id', '=', request()->cookie('ums_token'))->first();
                 if ($findGuest) {
