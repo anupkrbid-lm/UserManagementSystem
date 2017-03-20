@@ -21,7 +21,8 @@ class SetCookies
         if($request->hasCookie('ums_token')) {
 
             if (Session::has('ums_session')) {
-                $findGuest=Guest::where('cookie_id', '=', Session::get('ums_session'))->first();
+                $findGuest=Guest::where('cookie_id', '=', request()->cookie('ums_token'))->first();
+               // dd($findGuest);
                 if ($findGuest) {
                     $findGuest->path = request()->path();
                     $findGuest->save(); 
@@ -68,7 +69,7 @@ class SetCookies
                 if ($details_ip->status == "success") {
                     $newGuest = new Guest();
 
-                    $newGuest->cookie_id = request()->cookie('ums_token') ? request()->cookie('ums_token') : str_random(64);
+                    $newGuest->cookie_id = Session::get('_token');
                     $newGuest->ip_address = $details_ip->query;
                     $newGuest->city = $details_ip->city;
                     $newGuest->region = $details_ip->regionName;
