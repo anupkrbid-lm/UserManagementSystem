@@ -157,13 +157,16 @@
             data : {
                 _token : "{{ csrf_token() }}",
             },
+            cache : true,
             success: function (response) {
                 if(response.isFound == true) {
-                    console.log(response);
-                    $.each(response.guests, function (index, obj) {
-                        row += "<tr><td>" + obj.ip_address + "</td><td>" + obj.country + "</td><td>" + obj.city + "</td></tr>";
+                    $(response.guests).each(function(index, value) {
+                        console.log(value);
                     });
-                    $("#tbody").append(row);
+                    // $.each(response.guests, function (index, obj) {
+                    //     row += "<tr><td>" + obj.ip_address + "</td><td>" + obj.country + "</td><td>" + obj.city + "</td></tr>";
+                    // });
+                    // $("#tbody").append(row);
                 }
             }
         });
