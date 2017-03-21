@@ -29,7 +29,7 @@ class CreateVisitorLogsTable extends Migration
             $table->string('ua_type');
             $table->string('ua_os');
             $table->string('ua_browser');
-            $table->date('date');
+            $table->string('date');
             $table->string('name')->nullable();
             $table->string('email')->nullable();
             $table->timestamp('visited_at')->nullable();
