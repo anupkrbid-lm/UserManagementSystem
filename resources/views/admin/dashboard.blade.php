@@ -28,7 +28,7 @@
             <!-- /.panel-heading -->
             <div class="panel-body">
                 <div class="table-responsive">
-                    <table class="table table-striped">
+                    <table id="table_guest" class="table table-striped">
                         <thead>
                             <tr>
                                 <th>#</th>
@@ -41,7 +41,7 @@
                                 <th>Actions</th>
                             </tr>
                         </thead>
-                        <tbody id="tbody">
+                        <tbody id="tbody_guest">
                              @foreach( $guests as $guest )
                                 <tr>
                                     <td>{{ ++$loop->index }}</td>
@@ -160,8 +160,21 @@
             cache : true,
             success: function (response) {
                 if(response.isFound == true) {
+                    $('#tbody_guest').empty();
                     $(response.guests).each(function(index, value) {
-                        console.log(value);
+                        tr = $('<tr/>');
+                        tr.append("<td>" + (index+1) + "</td>");
+                        tr.append("<td>" + value.ip_address + "</td>");
+                        tr.append("<td>" + value.country + ", " + value.city + "</td>");
+                        tr.append("<td>" + value.ua_browser + "</td>");
+                        tr.append("<td>" + value.ua_type + ", " + value.ua_os + "</td>");
+                        tr.append("<td>coming soon..</td>");
+                    //    tr.append("<td>" + value.path + "</td>");
+                    //    tr.append("<td>" + value.created_at + "</td>");
+                        tr.append("<td>" + value.visited_at + "</td>");
+                        tr.append("<td><a href="+ "#" +"><button type=" + "button" + " class="+"btn btn-md btn-primary"+"><i class="+"fa fa-window-close-o"+"></i> End Chat</button></a><a href="+"#"+"><button type="+"button"+" class="+"btn btn-md btn-danger"+"><i class="+"fa fa-ban"+"></i> Block</button></a></td>");
+
+                        $('#tbody_guest').append(tr);
                     });
                     // $.each(response.guests, function (index, obj) {
                     //     row += "<tr><td>" + obj.ip_address + "</td><td>" + obj.country + "</td><td>" + obj.city + "</td></tr>";

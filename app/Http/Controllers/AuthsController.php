@@ -125,44 +125,13 @@ class AuthsController extends Controller
 
     public function checkOnlineVisitors()
     {
-        $result="";
-      //  $guests = Guest::all();
-        $guests = \App\VisitorLogs::all();
+        $guests = Guest::all();
+      //  $guests = \App\VisitorLogs::all();
         if ($guests) { 
             return response()->json([
                 'isFound' => true,
                 'guests' => $guests
             ]);
-    /*        foreach ($guests as $guest)
-            {
-              $result.="<tr>
-                            <td>"+ ++$loop->index +"</td>-
-                            <td>"+guest->ip_address+"</td>
-                            <td>"+guest->country+", "+guest->city+"</td>
-                            <td>"+guest->ua_browser+"</td>
-                            <td>"+guest->ua_type+", "+guest->ua_os+"</td>
-                            <td>"+guest->path+"</td>
-                            <td>"+guest->created_at"</td>
-                            <td>
-                                <a href= >
-                                    <button type="button" class="btn btn-md btn-primary">
-                                        <i class="fa fa-comments">
-                                        </i>
-                                         Start Chat
-                                    </button>
-                                </a>
-                                <a href= >
-                                    <button type="button" class="btn btn-md btn-danger">
-                                        <i class="fa fa-ban">
-                                        </i>
-                                         Block
-                                    </button>
-                                </a>                                        
-                            </td>
-                        </tr>"
-            } 
-            return */
-
         } else {
             return response()->json([
                 'isFound' => false,
