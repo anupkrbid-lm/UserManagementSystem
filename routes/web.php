@@ -61,6 +61,11 @@ Route::post('/logout', [
     'as' => 'app.logout'
 ]);
 
+Route::post('/check-online-visitors', [
+    'uses' => 'AuthsController@checkOnlineVisitors',
+    'as' => 'app.post.checkOnlineVisitors'
+]);
+
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::get('dashboard', [
         'uses' => 'AdminsController@dashboard',

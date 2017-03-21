@@ -33,7 +33,7 @@
                             <tr>
                                 <th>#</th>
                                 <th>IP</th>
-                                <th>Country/City</th>
+                                <th>Country /City</th>
                                 <th>Browser</th>
                                 <th>Device/OS</th>
                                 <th>Page</th>
@@ -41,8 +41,8 @@
                                 <th>Actions</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            @foreach( $guests as $guest )
+                        <tbody id="tbody">
+                             @foreach( $guests as $guest )
                                 <tr>
                                     <td>{{ ++$loop->index }}</td>
                                     <td>{{ $guest->ip_address }}</td>
@@ -68,7 +68,7 @@
                                         </a>                                        
                                     </td>
                                 </tr>
-                            @endforeach
+                            @endforeach 
                         </tbody>
                     </table>
                 </div>
@@ -141,3 +141,59 @@
 </div>
 
 @endsection
+
+@section('scripts')
+    
+ <script>
+    $(document).ready(function () {
+        $.ajax({
+            type : "post",
+            url : "{{ route('app.post.checkOnlineVisitors') }}",
+            data : {
+                _token : "{{ csrf_token() }}",
+            },
+            success: function (response) {
+                if(response.isFound == true) {
+                    console.log(response);
+                    $.each(response.guest , function (index, obj) {
+                        row += "<tr><td>" + obj.ip_address + "</td><td>" + obj.country + "</td><td>" + obj.city + "</td></tr>";
+                    });
+                    $("#tbody").append(row);
+                }
+            }
+        });
+    });
+</script>
+
+@endsection
+
+
+       {{--      // success: function(response) {
+            //     if (response.isFound == true) {
+            //         $.getJSON(response.guests, function(guest) {
+            //             var items = [];
+            //             $.each(guest, function(key, val) {
+            //                 items.push("<tr>");
+            //                 items.push("<td></td>");
+            //                 items.push("<td>"+val.ip_address+"</td>");
+            //                 items.push("<td>"+val.country+", "+val.city+"</td>");
+            //                 items.push("<td>"+val.ua_browser+"</td>");
+            //                 items.push("<td>"+val.ua_type+", "+val.ua_os+"</td>");
+            //                 items.push("<td>"+val.path+"</td>");
+            //                 items.push("<td>"+val.created_at+"</td>");
+            //                 items.push("</tr>");
+            //             });
+            //             $("<tbody/>", {html: items.join("")}).appendTo("table");
+            //             alert(items);
+            //         });
+
+            //         // var obj = JSON.parse(response.guests);
+            //         // console.log(obj);
+            //         // $(response.guests).each(function(index, guest) {
+            //         //     console.log(response.guest);
+            //         // });
+            //     // } else {
+            //     //     swal('error', response.error ,'error');
+            //     // }
+            // }
+ --}}
