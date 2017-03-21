@@ -145,7 +145,12 @@
 @section('scripts')
     
  <script>
+
     $(document).ready(function () {
+        setInterval("refreshGuests()", 5000);
+    });
+
+    function refreshGuests() {
         $.ajax({
             type : "post",
             url : "{{ route('app.post.checkOnlineVisitors') }}",
@@ -155,18 +160,18 @@
             success: function (response) {
                 if(response.isFound == true) {
                     console.log(response);
-                    $.each(response.guest , function (index, obj) {
+                    $.each(response.guests, function (index, obj) {
                         row += "<tr><td>" + obj.ip_address + "</td><td>" + obj.country + "</td><td>" + obj.city + "</td></tr>";
                     });
                     $("#tbody").append(row);
                 }
             }
         });
-    });
+    }
+
 </script>
 
 @endsection
-
 
        {{--      // success: function(response) {
             //     if (response.isFound == true) {
@@ -196,4 +201,4 @@
             //     //     swal('error', response.error ,'error');
             //     // }
             // }
- --}}
+        --}}
