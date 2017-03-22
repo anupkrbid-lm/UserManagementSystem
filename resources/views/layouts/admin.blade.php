@@ -18,6 +18,9 @@
     <!-- Custom CSS -->
     <link href="/css/sb-admin.css" rel="stylesheet">
 
+    <!-- Chat -->
+    <link rel="stylesheet" href="chat/css/style.css">
+
     <!-- CK Text Editor CDN -->
     <script src="https://cdn.ckeditor.com/4.6.2/standard/ckeditor.js"></script>
     
@@ -68,6 +71,10 @@
     <!-- Sweet Alert 2 -->
     <script src='https://cdn.jsdelivr.net/sweetalert2/6.4.2/sweetalert2.min.js'></script>
     <!--  <script src='sweetalert2/sweetalert2.min.js'></script>   -->
+
+    <!-- Chat -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+    <script src="chat/js/index.js"></script>
 
     <script>
         @if(session()->has('error'))

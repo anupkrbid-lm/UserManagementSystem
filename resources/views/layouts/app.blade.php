@@ -14,6 +14,9 @@
         <!-- Bootstrap Core CSS -->
         <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
+        <!-- Chat -->
+        <link rel="stylesheet" href="chat/css/style.css">
+
         <!-- Theme CSS -->
         <link href="css/freelancer.min.css" rel="stylesheet">
 
@@ -70,6 +73,10 @@
         <!-- Sweet Alert 2 -->
         <script src='https://cdn.jsdelivr.net/sweetalert2/6.4.2/sweetalert2.min.js'></script>
         <!--  <script src='sweetalert2/sweetalert2.min.js'></script>   -->
+
+        <!-- Chat -->
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+        <script src="chat/js/index.js"></script>
 
         <script>
             @if(session()->has('error'))

@@ -168,10 +168,8 @@
                         tr.append("<td>" + value.country + ", " + value.city + "</td>");
                         tr.append("<td>" + value.ua_browser + "</td>");
                         tr.append("<td>" + value.ua_type + ", " + value.ua_os + "</td>");
-                        tr.append("<td>coming soon..</td>");
-                    //    tr.append("<td>" + value.path + "</td>");
-                    //    tr.append("<td>" + value.created_at + "</td>");
-                        tr.append("<td>" + value.visited_at + "</td>");
+                        tr.append("<td>" + value.path + "</td>");
+                        tr.append("<td>" + value.created_at + "</td>");
                         tr.append("<td><a href="+ "#" +"><button type=" + "button" + " class="+"btn btn-md btn-primary"+"><i class="+"fa fa-window-close-o"+"></i> End Chat</button></a><a href="+"#"+"><button type="+"button"+" class="+"btn btn-md btn-danger"+"><i class="+"fa fa-ban"+"></i> Block</button></a></td>");
 
                         $('#tbody_guest').append(tr);

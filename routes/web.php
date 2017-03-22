@@ -191,6 +191,6 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth'], function () {
 
 
 
-Route::get('/test', function () {
-    return view('user.index');
+Route::get('/chat-test', function () {
+    return view('layouts.chat');
 });
